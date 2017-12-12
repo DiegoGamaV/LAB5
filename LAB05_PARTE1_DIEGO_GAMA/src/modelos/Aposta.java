@@ -51,8 +51,8 @@ public class Aposta {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((apostador == null) ? 0 : apostador.hashCode());
-		result = prime * result + ((previsao == null) ? 0 : previsao.hashCode());
+		result = prime * result + apostador.hashCode();
+		result = prime * result + previsao.hashCode();
 		result = prime * result + valor;
 		return result;
 	}
@@ -66,19 +66,13 @@ public class Aposta {
 		if (getClass() != obj.getClass())
 			return false;
 		Aposta other = (Aposta) obj;
-		if (apostador == null) {
-			if (other.apostador != null)
-				return false;
-		} else if (!apostador.equals(other.apostador))
+		if (!apostador.equals(other.apostador))
 			return false;
-		if (previsao == null) {
-			if (other.previsao != null)
-				return false;
-		} else if (!previsao.equals(other.previsao))
+		if (!previsao.equals(other.previsao))
 			return false;
 		if (valor != other.valor)
 			return false;
 		return true;
 	}
-
+	
 }

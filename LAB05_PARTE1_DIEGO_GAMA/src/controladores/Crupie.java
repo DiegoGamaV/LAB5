@@ -20,7 +20,7 @@ public class Crupie {
 	public int addCenario(String descricao) {
 		Cenario cenario = new Cenario(descricao);
 		this.cenarios.add(cenario);
-		return this.cenarios.indexOf(cenario);
+		return this.cenarios.indexOf(cenario) + 1;
 	}
 	
 	public void finalizarCenario(int cenario, boolean ocorreu) {
