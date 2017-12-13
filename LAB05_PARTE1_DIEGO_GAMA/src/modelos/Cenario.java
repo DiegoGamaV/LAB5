@@ -9,11 +9,11 @@ public class Cenario {
 	private ArrayList<Aposta> apostas;
 
 	public Cenario(String descricao) {
-		if (isInvalid()) {
-			throw new IllegalArgumentException();
-		}
-		if (isNull()) {
+		if (isNull(descricao)) {
 			throw new NullPointerException();
+		}
+		if (isInvalid(descricao)) {
+			throw new IllegalArgumentException();
 		}
 		this.descricao = descricao;
 		this.estado = "Não finalizado";
@@ -25,7 +25,11 @@ public class Cenario {
 	}
 
 	public void setEstado(String estado) {
-		this.estado = estado;
+		if (estado.equals("Finalizado (ocorreu)") || estado.equals("Finalizado (n ocorreu)")){
+			this.estado = estado;
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public boolean addAposta(String apostador, int valor, String previsao) {
@@ -72,12 +76,12 @@ public class Cenario {
 		return valorTotal;
 	}
 	
-	private boolean isInvalid() {
-		return this.descricao.trim().equals("");
+	private boolean isInvalid(String descricao) {
+		return descricao.trim().equals("");
 	}
 	
-	private boolean isNull() {
-		return this.descricao == null;
+	private boolean isNull(String descricao) {
+		return descricao == null;
 	}
 
 	@Override
@@ -90,8 +94,8 @@ public class Cenario {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apostas == null) ? 0 : apostas.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		result = prime * result + descricao.hashCode();
+		result = prime * result + estado.hashCode();
 		return result;
 	}
 
@@ -109,15 +113,9 @@ public class Cenario {
 				return false;
 		} else if (!apostas.equals(other.apostas))
 			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
+		if (!descricao.equals(other.descricao))
 			return false;
-		if (estado == null) {
-			if (other.estado != null)
-				return false;
-		} else if (!estado.equals(other.estado))
+		if (!estado.equals(other.estado))
 			return false;
 		return true;
 	}
