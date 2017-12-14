@@ -9,15 +9,21 @@ public class Cenario {
 	private ArrayList<Aposta> apostas;
 
 	public Cenario(String descricao) {
-		if (isNull(descricao)) {
-			throw new NullPointerException();
-		}
-		if (isInvalid(descricao)) {
-			throw new IllegalArgumentException();
-		}
+		isNull(descricao);
+		isInvalid(descricao);
 		this.descricao = descricao;
-		this.estado = "Não finalizado";
+		this.estado = "Nao finalizado";
 		this.apostas = new ArrayList<>();
+	}
+	
+	private void isInvalid(String descricao) {
+		if (descricao.trim().equals(""))
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
+	}
+	
+	private void isNull(String descricao) {
+		if (descricao == null)
+			throw new NullPointerException("Erro no cadastro de cenario: Descricao nao pode ser nula");
 	}
 
 	public String getEstado() {
@@ -74,14 +80,6 @@ public class Cenario {
 			valorTotal += aposta.getValor();
 		}
 		return valorTotal;
-	}
-	
-	private boolean isInvalid(String descricao) {
-		return descricao.trim().equals("");
-	}
-	
-	private boolean isNull(String descricao) {
-		return descricao == null;
 	}
 
 	@Override

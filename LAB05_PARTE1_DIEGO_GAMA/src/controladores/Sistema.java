@@ -8,11 +8,11 @@ public class Sistema {
 		this.controlador = new Crupie();
 	}
 	
-	public void inicializar(int caixa, double taxa) {
+	public void inicializa(int caixa, double taxa) {
 		this.controlador = new Crupie(caixa, taxa);
 	}
 	
-	public int resgatarCaixa() {
+	public int getCaixa() {
 		return this.controlador.getDinheiroAtual();
 	}
 	
