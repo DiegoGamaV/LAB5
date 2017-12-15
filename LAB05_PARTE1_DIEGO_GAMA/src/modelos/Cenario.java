@@ -56,11 +56,11 @@ public class Cenario {
 
 	private boolean verificarAposta(Aposta aposta) {
 		if (aposta.getPrevisao().equals("VAI ACONTECER") && this.estado.equals("Finalizado (ocorreu)")) {
-			return true;
-		} else if (aposta.getPrevisao().equals("N VAI ACONTECER") && this.estado.equals("Finalizado (n ocorreu)")) {
-			return true;
-		} else {
 			return false;
+		} else if (aposta.getPrevisao().equals("N VAI ACONTECER") && this.estado.equals("Finalizado (n ocorreu)")) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 

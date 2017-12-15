@@ -7,12 +7,8 @@ public class Aposta {
 	private String previsao;
 
 	public Aposta(String apostador, int valor, String previsao) {
-		if (isNull(apostador, previsao)) {
-			throw new NullPointerException();
-		}
-		if (isEmpity(apostador, previsao) || isInvalid(previsao, valor)) {
-			throw new IllegalArgumentException();
-		}
+		isEmpityOrNull(apostador, previsao);
+		isValid(previsao, valor);
 		this.apostador = apostador.trim();
 		this.valor = valor;
 		this.previsao = previsao.trim().toUpperCase();
@@ -26,20 +22,22 @@ public class Aposta {
 		return this.previsao;
 	}
 	
-	private boolean isInvalid(String previsao, int valor) {
-		if ((previsao.trim().toUpperCase().equals("VAI ACONTECER") || previsao.trim().toUpperCase().equals("N VAI ACONTECER")) && valor > 0) {
-			return false;
-		} else {
-			return true;
-		}
+	private void isValid(String previsao, int valor) {
+		if (!previsao.trim().toUpperCase().equals("VAI ACONTECER") && !previsao.trim().toUpperCase().equals("N VAI ACONTECER"))
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
+		if (valor <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
 	}
 	
-	private boolean isEmpity(String apostador, String previsao) {
-		return (apostador.trim().equals("") || previsao.trim().equals(""));
-	}
-	
-	private boolean isNull(String apostador, String previsao) {
-		return (apostador == null || previsao == null);
+	private void isEmpityOrNull(String apostador, String previsao) {
+		if (apostador == null)
+			throw new NullPointerException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
+		if (previsao == null)
+			throw new NullPointerException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		if (apostador.trim().equals(""))
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
+		if (previsao.trim().equals(""))
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
 	}
 
 	@Override

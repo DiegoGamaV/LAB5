@@ -32,19 +32,23 @@ public class Sistema {
 		this.controlador.addAposta(cenario, apostador, valor, previsao);
 	}
 	
-	public int contarApostas(int cenario) {
+	public int totalDeApostas(int cenario) {
 		return this.controlador.contarApostas(cenario);
 	}
 	
-	public void fecharCenario(int cenario, boolean ocorreu) {
+	public void fecharAposta(int cenario, boolean ocorreu) {
 		this.controlador.finalizarCenario(cenario, ocorreu);
 	}
 	
-	public int resgatarCaixaCenario(int cenario) {
+	public int valorTotalDeApostas(int cenario) {
+		return this.controlador.getTotalApostas(cenario);
+	}
+	
+	public int getCaixaCenario(int cenario) {
 		return this.controlador.getDinheiroParaCaixa(cenario);
 	}
 	
-	public int resgatarRateioCenario(int cenario) {
+	public int getTotalRateioCenario(int cenario) {
 		return this.controlador.getDinheiroVencedores(cenario);
 	}
 	

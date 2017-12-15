@@ -33,12 +33,22 @@ public class Crupie {
 	}
 
 	public void finalizarCenario(int cenario, boolean ocorreu) {
-		if (ocorreu) {
-			this.cenarios.get(cenario - 1).setEstado("Finalizado (ocorreu)");
-		} else {
-			this.cenarios.get(cenario - 1).setEstado("Finalizado (n ocorreu)");
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			if (consulta.getEstado().equals("Finalizado (ocorreu)")
+					|| consulta.getEstado().equals("Finalizado (n ocorreu)"))
+				throw new UnsupportedOperationException("Erro ao fechar aposta: Cenario ja esta fechado");
+			if (ocorreu) {
+				this.cenarios.get(cenario - 1).setEstado("Finalizado (ocorreu)");
+			} else {
+				this.cenarios.get(cenario - 1).setEstado("Finalizado (n ocorreu)");
+			}
+			this.caixa.addDinheiro(getDinheiroParaCaixa(cenario - 1));
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro ao fechar aposta: Cenario nao cadastrado");
 		}
-		this.caixa.addDinheiro(getDinheiroParaCaixa(cenario));
 	}
 
 	public String listarCenarios() {
@@ -54,7 +64,7 @@ public class Crupie {
 			throw new IllegalArgumentException("Erro na consulta de cenario: Cenario invalido");
 		try {
 			Cenario consulta = cenarios.get(cenario - 1);
-			return this.cenarios.indexOf(consulta) + " - " + consulta.toString();
+			return (this.cenarios.indexOf(consulta) + 1) + " - " + consulta.toString();
 		} catch (IndexOutOfBoundsException exception) {
 			throw new IndexOutOfBoundsException("Erro na consulta de cenario: Cenario nao cadastrado");
 		}
@@ -66,30 +76,81 @@ public class Crupie {
 	}
 
 	public int getDinheiroParaCaixa(int cenario) {
-		int valorBruto = this.cenarios.get(cenario - 1).calcularDinheiro();
-		return (int) Math.floor(valorBruto * this.caixa.getTaxa());
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			if (!consulta.getEstado().equals("Finalizado (ocorreu)")
+					&& !consulta.getEstado().equals("Finalizado (n ocorreu)"))
+				throw new UnsupportedOperationException(
+						"Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
+			int valorBruto = consulta.calcularDinheiro();
+			return (int) Math.floor(valorBruto * this.caixa.getTaxa());
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
+		}
 	}
 
 	public int getDinheiroVencedores(int cenario) {
-		int dinheiroParaCaixa = getDinheiroParaCaixa(cenario);
-		int valorBruto = this.cenarios.get(cenario - 1).calcularDinheiro();
-		return valorBruto - dinheiroParaCaixa;
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			if (!consulta.getEstado().equals("Finalizado (ocorreu)") && !consulta.getEstado().equals("Finalizado (n ocorreu)"))
+				throw new UnsupportedOperationException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
+			double dinheiroParaCaixa = consulta.calcularDinheiro() * this.caixa.getTaxa();
+			double valorBruto = (double) consulta.calcularDinheiro();
+			return (int) Math.floor(valorBruto - dinheiroParaCaixa);
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException(
+					"Erro na consulta do total de rateio do cenario: Cenario nao cadastrado");
+		}
+
 	}
 
 	public boolean addAposta(int cenario, String apostador, int valor, String previsao) {
-		return this.cenarios.get(cenario - 1).addAposta(apostador, valor, previsao);
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			return consulta.addAposta(apostador, valor, previsao);
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
 	}
 
 	public int getTotalApostas(int cenario) {
-		return this.cenarios.get(cenario - 1).calcularValorTotal();
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro na consulta do valor total de apostas: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			return consulta.calcularValorTotal();
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro na consulta do valor total de apostas: Cenario nao cadastrado");
+		}
 	}
 
 	public String listarApostas(int cenario) {
-		return this.cenarios.get(cenario - 1).exibirApostas();
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro na listagem de apostas: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			return consulta.exibirApostas();
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro na listagem de apostas: Cenario nao cadastrado");
+		}
 	}
 
 	public int contarApostas(int cenario) {
-		return this.cenarios.get(cenario - 1).contarApostas();
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro na consulta do total de apostas: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			return consulta.contarApostas();
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro na consulta do total de apostas: Cenario nao cadastrado");
+		}
+
 	}
 
 }
