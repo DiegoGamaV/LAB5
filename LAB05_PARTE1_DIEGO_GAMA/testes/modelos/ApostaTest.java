@@ -5,6 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Diego Alves Gama
+ * 
+ *         Testes de Unidade para a classe base Aposta.
+ * @since Parte 1
+ */
 public class ApostaTest {
 	
 	private Aposta aposta1;
@@ -38,7 +44,7 @@ public class ApostaTest {
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void valorNegativo() {
-		Aposta aposta = new Aposta("Arthur Ferrï¿½o", -450, "N VAI ACONTECER");
+		Aposta aposta = new Aposta("Arthur Ferrão", -450, "N VAI ACONTECER");
 	}
 	
 	@SuppressWarnings("unused")
@@ -56,21 +62,21 @@ public class ApostaTest {
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void previsaoInvalida() {
-		Aposta aposta = new Aposta("Gabriel de Sousa", 4000, "Nunca nem vi, sei nem o que ï¿½ isso.");
+		Aposta aposta = new Aposta("Gabriel de Sousa", 4000, "Nunca nem vi, sei nem o que é isso.");
 	}
 	
 	// --- Testes de toString --- 
 	
 	@Test
 	public void toStringIguais() {
-		String mensagem = "Esperando que as descriï¿½ï¿½es sejam iguais.";
+		String mensagem = "Esperando que as descrições sejam iguais.";
 		assertEquals(mensagem, aposta1.toString(), aposta2.toString());
 	}
 	
 	@Test
 	public void toStringDiferentes() {
 		Aposta aposta3 = new Aposta("Mateus de Lima", 1000, "   n Vai acONTEcer  ");
-		String mensagem = "Esperando que as descriï¿½ï¿½es sejam iguais.";
+		String mensagem = "Esperando que as descrições sejam iguais.";
 		assertNotEquals(mensagem, aposta1.toString(), aposta3.toString());
 	}
 	

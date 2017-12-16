@@ -2,50 +2,128 @@ package modelos;
 
 import java.util.ArrayList;
 
+/**
+ * @author Diego Alves Gama
+ * 
+ *         A classe Cenario é utilizada para abstrair uma situação da vida real.
+ *         Um Cenario contém uma descrição que representa a situação de que o
+ *         Cenario trata, o estado no qual este Cenario se encontra, e uma
+ *         ArrayList de objetos Aposta sobre este Cenario.
+ * @since Parte 1
+ */
 public class Cenario {
 
 	private String descricao;
 	private String estado;
 	private ArrayList<Aposta> apostas;
 
+	/**
+	 * Constrói um Cenario com uma descrição específica e um estado padrão como 'Nao
+	 * finalizado'. Uma descrição nula ou vazia não é aceita.
+	 * 
+	 * @param descricao
+	 *            A descrição sobre o que o cenário se trata.
+	 * @since Parte 1
+	 */
 	public Cenario(String descricao) {
 		isNull(descricao);
-		isInvalid(descricao);
+		isEmpity(descricao);
 		this.descricao = descricao;
 		this.estado = "Nao finalizado";
 		this.apostas = new ArrayList<>();
 	}
-	
-	private void isInvalid(String descricao) {
+
+	/**
+	 * Método de checagem que avalia se a String descricao passada é composta apenas
+	 * de espaços vazios.
+	 * 
+	 * @param descricao
+	 *            A descricao do Cenario a ser verificada.
+	 * @exception IllegalArgumentException
+	 *                se descricao é composta apenas de espacos vazios.
+	 * @since Parte 1
+	 */
+	private void isEmpity(String descricao) {
 		if (descricao.trim().equals(""))
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 	}
-	
+
+	/**
+	 * Método de checagem que avalia se a String descricao passada é nula.
+	 * 
+	 * @param descricao
+	 *            A descricao do Cenario a ser verificada.
+	 * @exception NullPointerException
+	 *                se a descricao é nula.
+	 * @since Parte 1
+	 */
 	private void isNull(String descricao) {
 		if (descricao == null)
 			throw new NullPointerException("Erro no cadastro de cenario: Descricao nao pode ser nula");
 	}
 
+	/**
+	 * Consulta o estado atual do Cenario.
+	 * 
+	 * @return o campo estado atual do Cenario.
+	 * @since Parte 1
+	 */
 	public String getEstado() {
 		return this.estado;
 	}
 
+	/**
+	 * Muda o valor do campo estado. Os únicos valores válidos são 'Finalizado
+	 * (ocorreu)' e 'Finalizado (n ocorreu)'.
+	 * 
+	 * @param estado
+	 *            O valor de String a ser atualizado no campo estado.
+	 * @exception IllegalArgumentException
+	 *                se o valor for diferente dos válidos.
+	 * @since Parte 1
+	 */
 	public void setEstado(String estado) {
-		if (estado.equals("Finalizado (ocorreu)") || estado.equals("Finalizado (n ocorreu)")){
-			this.estado = estado;
+		if (estado.trim().equals("Finalizado (ocorreu)") || estado.trim().equals("Finalizado (n ocorreu)")) {
+			this.estado = estado.trim();
 		} else {
 			throw new IllegalArgumentException();
 		}
 	}
 
+	/**
+	 * Cria e adiciona uma Aposta na lista de Apostas do Cenario.
+	 * 
+	 * @param apostador
+	 *            Nome do apostador responsável.
+	 * @param valor
+	 *            Quantia em centavos a ser apostada.
+	 * @param previsao
+	 *            Previsão quanto à fatalidade do Cenario. Os únicos valores válidos
+	 *            são "VAI ACONTECER" e "N VAI ACONTECER".
+	 * @return true se a Aposta for adicionada com sucesso, e false caso o
+	 *         contrário.
+	 * @since Parte 1
+	 */
 	public boolean addAposta(String apostador, int valor, String previsao) {
 		return this.apostas.add(new Aposta(apostador, valor, previsao));
 	}
 
+	/**
+	 * Conta a quantidade de objetos Aposta na lista de apostas.
+	 * 
+	 * @return a quantidade de apostas adicionadas neste Cenario.
+	 * @since Parte 1
+	 */
 	public int contarApostas() {
 		return this.apostas.size();
 	}
 
+	/**
+	 * Exibe uma representação textual de todas as Apostas deste Cenario.
+	 * 
+	 * @return a lista de todas as apostas deste Cenario.
+	 * @since Parte 1
+	 */
 	public String exibirApostas() {
 		String descricao = "";
 		for (int i = 0; i < this.apostas.size(); i++) {
@@ -54,6 +132,15 @@ public class Cenario {
 		return descricao;
 	}
 
+	/**
+	 * Método de checagem que verifica se a Aposta está correta sobre a fatalidade
+	 * do Cenario.
+	 * 
+	 * @param aposta
+	 *            Objeto Aposta a ser checado.
+	 * @return true, se a aposta estiver correta, e false se estiver errada.
+	 * @since Parte 1
+	 */
 	private boolean verificarAposta(Aposta aposta) {
 		if (aposta.getPrevisao().equals("VAI ACONTECER") && this.estado.equals("Finalizado (ocorreu)")) {
 			return false;
@@ -64,6 +151,12 @@ public class Cenario {
 		}
 	}
 
+	/**
+	 * Calcula e retorna o dinheiro de todas as Apostas perdedoras.
+	 * 
+	 * @return o somatório calculado.
+	 * @since Parte 1
+	 */
 	public int calcularDinheiro() {
 		int valorTotal = 0;
 		for (Aposta aposta : this.apostas) {
@@ -74,6 +167,12 @@ public class Cenario {
 		return valorTotal;
 	}
 
+	/**
+	 * Calcula a quantia total de todas as Apostas deste Cenario.
+	 * 
+	 * @return o somatório calculado.
+	 * @since Parte 1
+	 */
 	public int calcularValorTotal() {
 		int valorTotal = 0;
 		for (Aposta aposta : this.apostas) {
@@ -82,11 +181,23 @@ public class Cenario {
 		return valorTotal;
 	}
 
+	/**
+	 * Retorna a representação textual de um Cenario.
+	 * 
+	 * @return a String que representa este Cenario.
+	 * @since Parte 1
+	 */
 	@Override
 	public String toString() {
 		return this.descricao + " - " + this.estado;
 	}
 
+	/**
+	 * Calcula o hash code deste objeto.
+	 * 
+	 * @return o hash code computado.
+	 * @since Parte 1
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -97,6 +208,14 @@ public class Cenario {
 		return result;
 	}
 
+	/**
+	 * Compara se os dois objetos são considerados equivalentes.
+	 * 
+	 * @param obj
+	 *            O objeto a ser comparado com este Cenario.
+	 * @return true se o objeto for equivalente a este Cenario, e false caso o
+	 *         contrario.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

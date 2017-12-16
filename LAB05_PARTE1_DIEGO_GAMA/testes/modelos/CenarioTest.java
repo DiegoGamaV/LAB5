@@ -5,6 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Diego Alves Gama
+ * 
+ *         Testes de Unidade para a classe base Cenario.
+ * @since Parte 1
+ */
 public class CenarioTest {
 
 	private Cenario cenario1;
@@ -12,10 +18,10 @@ public class CenarioTest {
 
 	@Before
 	public void setUp() {
-		cenario1 = new Cenario("Diego vai pagar LP2 com 10 na mï¿½dia.");
-		cenario2 = new Cenario("A Valve vai lanï¿½ar Half-Life 3");
-		cenario2.addAposta("Diego Gama", 5000, "N VAI ACONTECER"); // a valve nï¿½o conhece o nï¿½mero 3
-		cenario2.addAposta("Mikael Amaral", 5000, "VAI ACONTECER"); // eu ainda tenho esperanï¿½a
+		cenario1 = new Cenario("Diego vai pagar LP2 com 10 na média.");
+		cenario2 = new Cenario("A Valve vai lançar Half-Life 3");
+		cenario2.addAposta("Diego Gama", 5000, "N VAI ACONTECER");
+		cenario2.addAposta("Mikael Amaral", 5000, "VAI ACONTECER");
 	}
 
 	// --- Testes de Construtor ---
@@ -40,7 +46,7 @@ public class CenarioTest {
 
 	@Test
 	public void estadoMudado() {
-		Cenario cenario = new Cenario("Diego vai ganhar uma cï¿½pia de Overwatch do professor Mateus Gaudï¿½ncio");
+		Cenario cenario = new Cenario("Diego vai ganhar uma cópia de Overwatch do professor Mateus Gaudêncio");
 		String mensagem = "Esperando que o estado tenha sido mudado para 'Finalizado (ocorreu)'";
 		cenario.setEstado("Finalizado (ocorreu)");
 		assertEquals(mensagem, "Finalizado (ocorreu)", cenario.getEstado());
@@ -48,14 +54,14 @@ public class CenarioTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void estadoInvalido() {
-		Cenario cenario = new Cenario("Diego vai ganhar uma cï¿½pia de Overwatch do professor Mateus Gaudï¿½ncio");
+		Cenario cenario = new Cenario("Diego vai ganhar uma cópia de Overwatch do professor Mateus Gaudêncio");
 		cenario.setEstado("GANHOU FOI DUAS");
 	}
 
 	@Test
 	public void adicionarAposta() {
-		String mensagem = "Esperando que seja possï¿½vel adicionar esta aposta ao cenï¿½rio";
-		assertTrue(mensagem, cenario1.addAposta("Lï¿½via Sampaio", 10000, "VAI ACONTECER"));
+		String mensagem = "Esperando que seja possível adicionar esta aposta ao cenário";
+		assertTrue(mensagem, cenario1.addAposta("Lívia Sampaio", 10000, "VAI ACONTECER"));
 	}
 
 	@Test
@@ -66,25 +72,25 @@ public class CenarioTest {
 
 	@Test
 	public void apostasIguais() {
-		String mensagem = "Esperando que as representaï¿½ï¿½es textuais das apostas sejam iguais";
+		String mensagem = "Esperando que as representações textuais das apostas sejam iguais";
 		String representacao = "Diego Gama - 5000 - N VAI ACONTECER" + System.lineSeparator()
 				+ "Mikael Amaral - 5000 - VAI ACONTECER" + System.lineSeparator();
 		assertEquals(mensagem, representacao, cenario2.exibirApostas());
 	}
-	
+
 	@Test
 	public void dinheiroTotalIgual() {
 		String mensagem = "Esperando que a quantia total em centavos seja a mesma";
 		assertEquals(mensagem, 10000, cenario2.calcularValorTotal());
 	}
-	
+
 	@Test
 	public void dinheirosPerdedoresIguais() {
 		String mensagem = "Esperando que a quantia retornada seja 5000";
 		cenario2.setEstado("Finalizado (ocorreu)");
 		assertEquals(mensagem, 5000, cenario2.calcularDinheiro());
 	}
-	
+
 	@Test
 	public void representacoesIguais() {
 		String mensagem = "Esperando que os toStrings sejam iguais";
