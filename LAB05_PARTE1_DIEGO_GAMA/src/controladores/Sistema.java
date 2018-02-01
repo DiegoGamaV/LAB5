@@ -20,6 +20,10 @@ public class Sistema {
 		return this.controlador.addCenario(descricao);
 	}
 	
+	public int cadastrarCenario(String descricao, int bonus) {
+		return this.controlador.addCenario(descricao, bonus);
+	}
+	
 	public String exibirCenario(int cenario) {
 		return this.controlador.exibirCenario(cenario);
 	}

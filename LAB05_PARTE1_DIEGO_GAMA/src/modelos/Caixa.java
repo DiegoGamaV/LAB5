@@ -14,7 +14,7 @@ public class Caixa {
 	private double taxa;
 
 	/**
-	 * Constrói um Caixa com dinheiro inicial e taxa de ganho especificados.
+	 * Constrï¿½i um Caixa com dinheiro inicial e taxa de ganho especificados.
 	 * 
 	 * @param dinheiro
 	 *            Dinheiro inicial do Caixa em centavos.
@@ -42,12 +42,17 @@ public class Caixa {
 	 * Adiciona o dinheiro passado ao Caixa.
 	 * 
 	 * @param dinheiro
-	 *            Dinheiro em centavos a ser adicionado à quantia total do Caixa.
+	 *            Dinheiro em centavos a ser adicionado ï¿½ quantia total do Caixa.
 	 * @since Parte 1
 	 */
 	public void addDinheiro(int dinheiro) {
 		this.dinheiro += dinheiro;
 	}
+	
+	public void subtractDinheiro(int dinheiro) {
+		this.dinheiro -= dinheiro;
+	}
+	
 
 	/**
 	 * Retorna a taxa cobrada sob apostas perdedoras em formato decimal.
@@ -77,10 +82,10 @@ public class Caixa {
 	}
 
 	/**
-	 * Checa se o objeto passado é considerado equivalente a este Caixa.
+	 * Checa se o objeto passado ï¿½ considerado equivalente a este Caixa.
 	 * 
 	 * @return true se o objeto passado for considerado equivalente a este Caixa, e
-	 *         false caso o contrário.
+	 *         false caso o contrï¿½rio.
 	 * @since Parte 1
 	 */
 	@Override

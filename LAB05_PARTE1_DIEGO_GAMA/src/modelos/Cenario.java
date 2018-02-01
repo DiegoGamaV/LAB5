@@ -5,8 +5,8 @@ import java.util.ArrayList;
 /**
  * @author Diego Alves Gama
  * 
- *         A classe Cenario é utilizada para abstrair uma situação da vida real.
- *         Um Cenario contém uma descrição que representa a situação de que o
+ *         A classe Cenario ï¿½ utilizada para abstrair uma situaï¿½ï¿½o da vida real.
+ *         Um Cenario contï¿½m uma descriï¿½ï¿½o que representa a situaï¿½ï¿½o de que o
  *         Cenario trata, o estado no qual este Cenario se encontra, e uma
  *         ArrayList de objetos Aposta sobre este Cenario.
  * @since Parte 1
@@ -18,11 +18,11 @@ public class Cenario {
 	private ArrayList<Aposta> apostas;
 
 	/**
-	 * Constrói um Cenario com uma descrição específica e um estado padrão como 'Nao
-	 * finalizado'. Uma descrição nula ou vazia não é aceita.
+	 * Constrï¿½i um Cenario com uma descriï¿½ï¿½o especï¿½fica e um estado padrï¿½o como 'Nao
+	 * finalizado'. Uma descriï¿½ï¿½o nula ou vazia nï¿½o ï¿½ aceita.
 	 * 
 	 * @param descricao
-	 *            A descrição sobre o que o cenário se trata.
+	 *            A descriï¿½ï¿½o sobre o que o cenï¿½rio se trata.
 	 * @since Parte 1
 	 */
 	public Cenario(String descricao) {
@@ -34,13 +34,13 @@ public class Cenario {
 	}
 
 	/**
-	 * Método de checagem que avalia se a String descricao passada é composta apenas
-	 * de espaços vazios.
+	 * Mï¿½todo de checagem que avalia se a String descricao passada ï¿½ composta apenas
+	 * de espaï¿½os vazios.
 	 * 
 	 * @param descricao
 	 *            A descricao do Cenario a ser verificada.
 	 * @exception IllegalArgumentException
-	 *                se descricao é composta apenas de espacos vazios.
+	 *                se descricao ï¿½ composta apenas de espacos vazios.
 	 * @since Parte 1
 	 */
 	private void isEmpity(String descricao) {
@@ -49,12 +49,12 @@ public class Cenario {
 	}
 
 	/**
-	 * Método de checagem que avalia se a String descricao passada é nula.
+	 * Mï¿½todo de checagem que avalia se a String descricao passada ï¿½ nula.
 	 * 
 	 * @param descricao
 	 *            A descricao do Cenario a ser verificada.
 	 * @exception NullPointerException
-	 *                se a descricao é nula.
+	 *                se a descricao ï¿½ nula.
 	 * @since Parte 1
 	 */
 	private void isNull(String descricao) {
@@ -73,13 +73,13 @@ public class Cenario {
 	}
 
 	/**
-	 * Muda o valor do campo estado. Os únicos valores válidos são 'Finalizado
+	 * Muda o valor do campo estado. Os ï¿½nicos valores vï¿½lidos sï¿½o 'Finalizado
 	 * (ocorreu)' e 'Finalizado (n ocorreu)'.
 	 * 
 	 * @param estado
 	 *            O valor de String a ser atualizado no campo estado.
 	 * @exception IllegalArgumentException
-	 *                se o valor for diferente dos válidos.
+	 *                se o valor for diferente dos vï¿½lidos.
 	 * @since Parte 1
 	 */
 	public void setEstado(String estado) {
@@ -94,20 +94,24 @@ public class Cenario {
 	 * Cria e adiciona uma Aposta na lista de Apostas do Cenario.
 	 * 
 	 * @param apostador
-	 *            Nome do apostador responsável.
+	 *            Nome do apostador responsï¿½vel.
 	 * @param valor
 	 *            Quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            Previsão quanto à fatalidade do Cenario. Os únicos valores válidos
-	 *            são "VAI ACONTECER" e "N VAI ACONTECER".
+	 *            Previsï¿½o quanto ï¿½ fatalidade do Cenario. Os ï¿½nicos valores vï¿½lidos
+	 *            sï¿½o "VAI ACONTECER" e "N VAI ACONTECER".
 	 * @return true se a Aposta for adicionada com sucesso, e false caso o
-	 *         contrário.
+	 *         contrï¿½rio.
 	 * @since Parte 1
 	 */
 	public boolean addAposta(String apostador, int valor, String previsao) {
 		return this.apostas.add(new Aposta(apostador, valor, previsao));
 	}
-
+	
+	public boolean addAposta(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+		return this.apostas.add(new ApostaAsseguradaValor(apostador, valor, previsao, valorAssegurado, custo));
+	}
+	
 	/**
 	 * Conta a quantidade de objetos Aposta na lista de apostas.
 	 * 
@@ -119,7 +123,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Exibe uma representação textual de todas as Apostas deste Cenario.
+	 * Exibe uma representaï¿½ï¿½o textual de todas as Apostas deste Cenario.
 	 * 
 	 * @return a lista de todas as apostas deste Cenario.
 	 * @since Parte 1
@@ -131,9 +135,22 @@ public class Cenario {
 		}
 		return descricao;
 	}
+	
+	public int getSeguros() {
+		int dinheiroSeguro = 0;
+		for (Aposta aposta : apostas) {
+			if (aposta instanceof ApostaAsseguradaValor)
+				dinheiroSeguro += ((ApostaAsseguradaValor) aposta).getValorAssegurado();
+			else {
+				if (aposta instanceof ApostaAsseguradaTaxa)
+					dinheiroSeguro += ((ApostaAsseguradaTaxa) aposta).getValorAssegurado();
+			}
+		}
+		return dinheiroSeguro;
+	}
 
 	/**
-	 * Método de checagem que verifica se a Aposta está correta sobre a fatalidade
+	 * Mï¿½todo de checagem que verifica se a Aposta estï¿½ correta sobre a fatalidade
 	 * do Cenario.
 	 * 
 	 * @param aposta
@@ -154,7 +171,7 @@ public class Cenario {
 	/**
 	 * Calcula e retorna o dinheiro de todas as Apostas perdedoras.
 	 * 
-	 * @return o somatório calculado.
+	 * @return o somatï¿½rio calculado.
 	 * @since Parte 1
 	 */
 	public int calcularDinheiro() {
@@ -170,7 +187,7 @@ public class Cenario {
 	/**
 	 * Calcula a quantia total de todas as Apostas deste Cenario.
 	 * 
-	 * @return o somatório calculado.
+	 * @return o somatï¿½rio calculado.
 	 * @since Parte 1
 	 */
 	public int calcularValorTotal() {
@@ -182,7 +199,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Retorna a representação textual de um Cenario.
+	 * Retorna a representaï¿½ï¿½o textual de um Cenario.
 	 * 
 	 * @return a String que representa este Cenario.
 	 * @since Parte 1
@@ -209,7 +226,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Compara se os dois objetos são considerados equivalentes.
+	 * Compara se os dois objetos sï¿½o considerados equivalentes.
 	 * 
 	 * @param obj
 	 *            O objeto a ser comparado com este Cenario.
