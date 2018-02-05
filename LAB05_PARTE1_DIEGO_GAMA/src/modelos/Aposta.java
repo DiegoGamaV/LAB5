@@ -13,6 +13,7 @@ public class Aposta {
 
 	private String apostador;
 	private int valor;
+	private Tipo tipo;
 	private String previsao;
 
 	/**
@@ -37,6 +38,25 @@ public class Aposta {
 		this.apostador = apostador.trim();
 		this.valor = valor;
 		this.previsao = previsao.trim().toUpperCase();
+		this.tipo = new Tipo();
+	}
+	
+	public Aposta(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+		isEmpityOrNull(apostador, previsao);
+		isValid(previsao, valor);
+		this.apostador = apostador.trim();
+		this.valor = valor;
+		this.previsao = previsao.trim().toUpperCase();
+		this.tipo = new ApostaAsseguradaValor(valorAssegurado, custo);
+	}
+	
+	public Aposta(String apostador, int valor, String previsao, double taxa, int custo) {
+		isEmpityOrNull(apostador, previsao);
+		isValid(previsao, valor);
+		this.apostador = apostador.trim();
+		this.valor = valor;
+		this.previsao = previsao.trim().toUpperCase();
+		this.tipo = new ApostaAsseguradaTaxa(taxa, custo);
 	}
 
 	/**
@@ -116,6 +136,28 @@ public class Aposta {
 	public String getPrevisao() {
 		return this.previsao;
 	}
+	
+	public Tipo getTipo() {
+		return this.tipo;
+	}
+	
+	public void alterarSeguro(int valor) {
+		if (this.tipo instanceof ApostaAsseguradaValor) {
+			int custo = ((ApostaAsseguradaValor) tipo).getCusto();
+			tipo = new ApostaAsseguradaValor(valor, custo);
+		} else {
+			throw new UnsupportedOperationException("Aposta já é assegurada por valor!");
+		}
+	}
+	
+	public void alterarSeguro(double taxa) {
+		if (this.tipo instanceof ApostaAsseguradaTaxa) {
+			int custo = ((ApostaAsseguradaValor) tipo).getCusto();
+			tipo = new ApostaAsseguradaTaxa(taxa, custo);
+		} else {
+			throw new UnsupportedOperationException("Aposta já é assegurada por taxa!");
+		}
+	}
 
 	/**
 	 * Retorna uma representação textual de uma Aposta.
@@ -125,7 +167,13 @@ public class Aposta {
 	 */
 	@Override
 	public String toString() {
-		return this.apostador + " - " + this.valor + " - " + this.previsao;
+		String descricao = this.apostador + " - " + this.valor + " - " + this.previsao;
+		if (this.tipo instanceof ApostaAsseguradaValor) {
+			descricao += " - ASSEGURADA (VALOR) - " + ((ApostaAsseguradaValor) this.tipo).getValorAssegurado();
+		} else if (this.tipo instanceof ApostaAsseguradaTaxa) {
+			descricao += " - ASSEGURADA (TIPO) - " + ((ApostaAsseguradaTaxa) this.tipo).getTaxa();
+		}
+		return descricao;
 	}
 
 	/**

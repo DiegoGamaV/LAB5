@@ -1,12 +1,11 @@
 package modelos;
 
-public class ApostaAsseguradaValor extends Aposta {
+public class ApostaAsseguradaValor extends Tipo {
 
 	private int valorAssegurado;
 	private int custo;
 	
-	public ApostaAsseguradaValor(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
-		super(apostador, valor, previsao);
+	public ApostaAsseguradaValor(int valorAssegurado, int custo) {
 		this.valorAssegurado = valorAssegurado;
 		this.custo = custo;
 	}

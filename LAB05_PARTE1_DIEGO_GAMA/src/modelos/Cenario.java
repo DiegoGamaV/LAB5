@@ -109,7 +109,11 @@ public class Cenario {
 	}
 	
 	public boolean addAposta(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
-		return this.apostas.add(new ApostaAsseguradaValor(apostador, valor, previsao, valorAssegurado, custo));
+		return this.apostas.add(new Aposta(apostador, valor, previsao, valorAssegurado, custo));
+	}
+	
+	public boolean addAposta(String apostador, int valor, String previsao, double taxa, int custo) {
+		return this.apostas.add(new Aposta(apostador, valor, previsao, taxa, custo));
 	}
 	
 	/**
@@ -136,14 +140,16 @@ public class Cenario {
 		return descricao;
 	}
 	
+	
+	
 	public int getSeguros() {
 		int dinheiroSeguro = 0;
 		for (Aposta aposta : apostas) {
-			if (aposta instanceof ApostaAsseguradaValor)
-				dinheiroSeguro += ((ApostaAsseguradaValor) aposta).getValorAssegurado();
+			if (aposta.getTipo() instanceof ApostaAsseguradaValor)
+				dinheiroSeguro += ((ApostaAsseguradaValor) aposta.getTipo()).getValorAssegurado();
 			else {
-				if (aposta instanceof ApostaAsseguradaTaxa)
-					dinheiroSeguro += ((ApostaAsseguradaTaxa) aposta).getValorAssegurado();
+				if (aposta.getTipo() instanceof ApostaAsseguradaTaxa)
+					dinheiroSeguro += aposta.getValor() * ((ApostaAsseguradaTaxa) aposta.getTipo()).getTaxa();
 			}
 		}
 		return dinheiroSeguro;

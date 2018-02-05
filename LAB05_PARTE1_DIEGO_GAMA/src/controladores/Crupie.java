@@ -81,6 +81,7 @@ public class Crupie {
 	
 	public int addCenario(String descricao, int bonus) {
 		CenarioBonus cenario = new CenarioBonus(descricao, bonus);
+		this.caixa.subtractDinheiro(bonus);
 		this.cenarios.add(cenario);
 		return this.cenarios.indexOf(cenario) + 1;
 	}
@@ -231,6 +232,8 @@ public class Crupie {
 			double dinheiroParaCaixa = consulta.calcularDinheiro() * this.caixa.getTaxa();
 			double valorBruto = (double) consulta.calcularDinheiro();
 			int rateio = (int) Math.floor(valorBruto - dinheiroParaCaixa);
+			int seguroTotal = (int) Math.floor(consulta.getSeguros());
+			this.caixa.subtractDinheiro(seguroTotal);
 			if (consulta instanceof CenarioBonus)
 				rateio += ((CenarioBonus) consulta).getBonus();
 			return rateio;
@@ -276,7 +279,19 @@ public class Crupie {
 		try {
 			Cenario consulta = this.cenarios.get(cenario - 1);
 			this.caixa.addDinheiro(custo);
-			return consulta.addAposta(apostador, valor, previsao);
+			return consulta.addAposta(apostador, valor, previsao, valorAssegurado, custo);
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+	}
+	
+	public boolean addAposta(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			this.caixa.addDinheiro(custo);
+			return consulta.addAposta(apostador, valor, previsao, taxa, custo);
 		} catch (IndexOutOfBoundsException exception) {
 			throw new IndexOutOfBoundsException("Erro no cadastro de aposta: Cenario nao cadastrado");
 		}

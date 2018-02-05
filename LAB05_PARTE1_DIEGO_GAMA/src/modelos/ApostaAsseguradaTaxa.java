@@ -1,10 +1,21 @@
 package modelos;
 
-public class ApostaAsseguradaTaxa extends Aposta {
+public class ApostaAsseguradaTaxa extends Tipo {
 
-	public ApostaAsseguradaTaxa(String apostador, int valor, String previsao) {
-		super(apostador, valor, previsao);
-		
+	private double taxa;
+	private int custo;
+	
+	public ApostaAsseguradaTaxa(double taxa, int custo) {
+		this.taxa = taxa;
+		this.custo = custo;
+	}
+	
+	public double getTaxa() {
+		return this.taxa;
 	}
 
+	public int getCusto() {
+		return this.custo;
+	}
+	
 }
