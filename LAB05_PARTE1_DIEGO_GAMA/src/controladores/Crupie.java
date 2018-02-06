@@ -273,7 +273,7 @@ public class Crupie {
 		}
 	}
 	
-	public boolean addAposta(int cenario, String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+	public int addAposta(int cenario, String apostador, int valor, String previsao, int valorAssegurado, int custo) {
 		if (cenario <= 0)
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
 		try {
@@ -285,13 +285,35 @@ public class Crupie {
 		}
 	}
 	
-	public boolean addAposta(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
+	public int addAposta(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
 		if (cenario <= 0)
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
 		try {
 			Cenario consulta = this.cenarios.get(cenario - 1);
 			this.caixa.addDinheiro(custo);
 			return consulta.addAposta(apostador, valor, previsao, taxa, custo);
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+	}
+	
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			return consulta.alterarSeguroValor(apostaAssegurada, valor);
+		} catch (IndexOutOfBoundsException exception) {
+			throw new IndexOutOfBoundsException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+	}
+	
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		if (cenario <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		try {
+			Cenario consulta = this.cenarios.get(cenario - 1);
+			return consulta.alterarSeguroTaxa(apostaAssegurada, taxa);
 		} catch (IndexOutOfBoundsException exception) {
 			throw new IndexOutOfBoundsException("Erro no cadastro de aposta: Cenario nao cadastrado");
 		}

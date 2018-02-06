@@ -36,6 +36,22 @@ public class Sistema {
 		this.controlador.addAposta(cenario, apostador, valor, previsao);
 	}
 	
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+		return this.controlador.addAposta(cenario, apostador, valor, previsao, valorAssegurado, custo);
+	}
+	
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		return this.controlador.addAposta(cenario, apostador, valor, previsao, taxa, custo);
+	}
+	
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		return this.alterarSeguroValor(cenario, apostaAssegurada, valor);
+	}
+	
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		return this.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
+	}
+	
 	public int totalDeApostas(int cenario) {
 		return this.controlador.contarApostas(cenario);
 	}

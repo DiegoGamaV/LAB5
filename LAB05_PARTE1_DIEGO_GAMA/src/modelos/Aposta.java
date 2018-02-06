@@ -4,31 +4,31 @@ package modelos;
  * @author Diego Alves Gama
  * 
  *         A classe Aposta representa uma Aposta realizada sob uma determinada
- *         situação. Uma Aposta contém o nome do apostador que a realizou, a
- *         quantia apostada em centavos, e a previsão sobre a fatalidade da
- *         situação.
+ *         situaï¿½ï¿½o. Uma Aposta contï¿½m o nome do apostador que a realizou, a
+ *         quantia apostada em centavos, e a previsï¿½o sobre a fatalidade da
+ *         situaï¿½ï¿½o.
  * @since Parte 1
  */
 public class Aposta {
 
 	private String apostador;
 	private int valor;
-	private Tipo tipo;
+	private Seguro seguro;
 	private String previsao;
 
 	/**
-	 * Constrói uma Aposta com o nome do apostador, valor e previsão especificados.
-	 * Os únicos valores permitidos para uma previsão são "VAI ACONTECER" e "N VAI
+	 * Constrï¿½i uma Aposta com o nome do apostador, valor e previsï¿½o especificados.
+	 * Os ï¿½nicos valores permitidos para uma previsï¿½o sï¿½o "VAI ACONTECER" e "N VAI
 	 * ACONTECER". A quantia apostada deve ser positiva. Valores nulos, vazios ou
-	 * negativos não são aceitos.
+	 * negativos nï¿½o sï¿½o aceitos.
 	 * 
 	 * 
 	 * @param apostador
-	 *            Nome do apostador responsável pela Aposta.
+	 *            Nome do apostador responsï¿½vel pela Aposta.
 	 * @param valor
 	 *            Quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            Estimativa sobre a fatalidade do Cenario sob o qual a Aposta é
+	 *            Estimativa sobre a fatalidade do Cenario sob o qual a Aposta ï¿½
 	 *            realizada.
 	 * @since Parte 1
 	 */
@@ -38,31 +38,31 @@ public class Aposta {
 		this.apostador = apostador.trim();
 		this.valor = valor;
 		this.previsao = previsao.trim().toUpperCase();
-		this.tipo = new Tipo();
+		this.seguro = new Seguro();
 	}
 	
-	public Aposta(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+	public Aposta(String apostador, int valor, String previsao, int valorAssegurado, int custo, int id) {
 		isEmpityOrNull(apostador, previsao);
-		isValid(previsao, valor);
+		isValid(previsao, valor, custo, valorAssegurado);
 		this.apostador = apostador.trim();
 		this.valor = valor;
 		this.previsao = previsao.trim().toUpperCase();
-		this.tipo = new ApostaAsseguradaValor(valorAssegurado, custo);
+		this.seguro = new SeguroValor(valorAssegurado, custo, id);
 	}
 	
-	public Aposta(String apostador, int valor, String previsao, double taxa, int custo) {
+	public Aposta(String apostador, int valor, String previsao, double taxa, int custo, int id) {
 		isEmpityOrNull(apostador, previsao);
-		isValid(previsao, valor);
+		isValid(previsao, valor, custo, taxa);
 		this.apostador = apostador.trim();
 		this.valor = valor;
 		this.previsao = previsao.trim().toUpperCase();
-		this.tipo = new ApostaAsseguradaTaxa(taxa, custo);
+		this.seguro = new SeguroTaxa(taxa, custo, id);
 	}
 
 	/**
-	 * Método de checagem que avalia se os valores passados são válidos. Os únicos
-	 * valores válidos para previsao são 'VAI ACONTECER' e 'N VAI ACONTECER'. As
-	 * únicas quantias válidas para valor são as positivas.
+	 * Mï¿½todo de checagem que avalia se os valores passados sï¿½o vï¿½lidos. Os ï¿½nicos
+	 * valores vï¿½lidos para previsao sï¿½o 'VAI ACONTECER' e 'N VAI ACONTECER'. As
+	 * ï¿½nicas quantias vï¿½lidas para valor sï¿½o as positivas.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -82,10 +82,35 @@ public class Aposta {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
 		if (valor <= 0)
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
+		
+	}
+	
+	private void isValid(String previsao, int valor, int custo, double taxa) {
+		if (!previsao.trim().toUpperCase().equals("VAI ACONTECER")
+				&& !previsao.trim().toUpperCase().equals("N VAI ACONTECER"))
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
+		if (valor <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
+		if (custo <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Custo nao pode ser menor ou igual a zero");
+		if (taxa <= 0.0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Taxa nao pode ser menor ou igual a zero");
+	}
+	
+	private void isValid(String previsao, int valor, int custo, int valorAssegurado) {
+		if (!previsao.trim().toUpperCase().equals("VAI ACONTECER")
+				&& !previsao.trim().toUpperCase().equals("N VAI ACONTECER"))
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
+		if (valor <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
+		if (custo <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Custo nao pode ser menor ou igual a zero");
+		if (valorAssegurado <= 0)
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor assegurado nao pode ser menor ou igual a zero");
 	}
 
 	/**
-	 * Método de checagem que avalia se os valores passados são vazios ou nulos.
+	 * Mï¿½todo de checagem que avalia se os valores passados sï¿½o vazios ou nulos.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -94,15 +119,15 @@ public class Aposta {
 	 * @exception IllegalArgumentException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> Valor de previsao é composto apenas de espaços vazios.
-	 *                </i> <i> Valor de apostador é composto apenas de espaços
+	 *                <i> Valor de previsao ï¿½ composto apenas de espaï¿½os vazios.
+	 *                </i> <i> Valor de apostador ï¿½ composto apenas de espaï¿½os
 	 *                vazios. </i>
 	 *                </nl>
 	 * @exception NullPointerException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> O valor de previsao é null. </i> <i> O valor de apostador
-	 *                é null. </i>
+	 *                <i> O valor de previsao ï¿½ null. </i> <i> O valor de apostador
+	 *                ï¿½ null. </i>
 	 *                </nl>
 	 * @since Parte 1
 	 */
@@ -137,30 +162,16 @@ public class Aposta {
 		return this.previsao;
 	}
 	
-	public Tipo getTipo() {
-		return this.tipo;
+	public Seguro getSeguro() {
+		return this.seguro;
 	}
 	
-	public void alterarSeguro(int valor) {
-		if (this.tipo instanceof ApostaAsseguradaValor) {
-			int custo = ((ApostaAsseguradaValor) tipo).getCusto();
-			tipo = new ApostaAsseguradaValor(valor, custo);
-		} else {
-			throw new UnsupportedOperationException("Aposta já é assegurada por valor!");
-		}
+	public void setSeguro(Seguro seguro) {
+		this.seguro = seguro;
 	}
 	
-	public void alterarSeguro(double taxa) {
-		if (this.tipo instanceof ApostaAsseguradaTaxa) {
-			int custo = ((ApostaAsseguradaValor) tipo).getCusto();
-			tipo = new ApostaAsseguradaTaxa(taxa, custo);
-		} else {
-			throw new UnsupportedOperationException("Aposta já é assegurada por taxa!");
-		}
-	}
-
 	/**
-	 * Retorna uma representação textual de uma Aposta.
+	 * Retorna uma representaï¿½ï¿½o textual de uma Aposta.
 	 * 
 	 * @return a String que representa esta Aposta.
 	 * @since Parte 1
@@ -168,10 +179,10 @@ public class Aposta {
 	@Override
 	public String toString() {
 		String descricao = this.apostador + " - " + this.valor + " - " + this.previsao;
-		if (this.tipo instanceof ApostaAsseguradaValor) {
-			descricao += " - ASSEGURADA (VALOR) - " + ((ApostaAsseguradaValor) this.tipo).getValorAssegurado();
-		} else if (this.tipo instanceof ApostaAsseguradaTaxa) {
-			descricao += " - ASSEGURADA (TIPO) - " + ((ApostaAsseguradaTaxa) this.tipo).getTaxa();
+		if (this.seguro instanceof SeguroValor) {
+			descricao += " - ASSEGURADA (VALOR) - " + ((SeguroValor) this.seguro).getValorAssegurado();
+		} else if (this.seguro instanceof SeguroTaxa) {
+			descricao += " - ASSEGURADA (TAXA) - " + ((SeguroTaxa) this.seguro).getTaxa();
 		}
 		return descricao;
 	}
@@ -193,10 +204,10 @@ public class Aposta {
 	}
 
 	/**
-	 * Avalia se o objeto passado é equivalente a esta Aposta.
+	 * Avalia se o objeto passado ï¿½ equivalente a esta Aposta.
 	 * 
 	 * @return true se o objeto for considerado equivalente a esta Aposta, e false
-	 *         caso o contrário.
+	 *         caso o contrï¿½rio.
 	 * @since Parte 1
 	 */
 	@Override

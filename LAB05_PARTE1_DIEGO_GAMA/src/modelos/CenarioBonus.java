@@ -12,7 +12,7 @@ public class CenarioBonus extends Cenario {
 	
 	private void isValid(int bonus) {
 		if (bonus <= 0)
-			throw new IllegalArgumentException("INSERIR MENSAGEM AQUI");
+			throw new IllegalArgumentException("Bônus não pode ser nulo ou negativo!");
 	}
 	
 	public int getBonus() {

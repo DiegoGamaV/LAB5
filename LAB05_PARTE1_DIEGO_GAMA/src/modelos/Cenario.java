@@ -16,6 +16,7 @@ public class Cenario {
 	private String descricao;
 	private String estado;
 	private ArrayList<Aposta> apostas;
+	private int contador;
 
 	/**
 	 * Constr�i um Cenario com uma descri��o espec�fica e um estado padr�o como 'Nao
@@ -31,6 +32,7 @@ public class Cenario {
 		this.descricao = descricao;
 		this.estado = "Nao finalizado";
 		this.apostas = new ArrayList<>();
+		this.contador = 1;
 	}
 
 	/**
@@ -108,12 +110,50 @@ public class Cenario {
 		return this.apostas.add(new Aposta(apostador, valor, previsao));
 	}
 	
-	public boolean addAposta(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
-		return this.apostas.add(new Aposta(apostador, valor, previsao, valorAssegurado, custo));
+	public int addAposta(String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+		int id = this.contador;
+		this.contador++;
+		this.apostas.add(new Aposta(apostador, valor, previsao, valorAssegurado, custo, id));
+		return id;
 	}
 	
-	public boolean addAposta(String apostador, int valor, String previsao, double taxa, int custo) {
-		return this.apostas.add(new Aposta(apostador, valor, previsao, taxa, custo));
+	public int addAposta(String apostador, int valor, String previsao, double taxa, int custo) {
+		int id = this.contador;
+		this.contador++;
+		this.apostas.add(new Aposta(apostador, valor, previsao, taxa, custo, id));
+		return id;
+	}
+	
+	public int alterarSeguroValor(int apostaAssegurada, int valor) {
+		for (Aposta aposta : this.apostas) {
+			if (aposta.getSeguro().getId() == apostaAssegurada) {
+				Seguro tipo = aposta.getSeguro();
+				if (tipo instanceof SeguroTaxa) {
+					SeguroTaxa tipoValor = (SeguroTaxa) tipo;
+					aposta.setSeguro(new SeguroValor(valor, tipoValor.getCusto(), tipo.getId()));
+					return tipo.getId();
+				} else {
+					throw new UnsupportedOperationException("Aposta já é assegurada por valor!");
+				}
+			}
+		} 
+		throw new IllegalArgumentException("Aposta assegurada não encontrada!");
+	}
+	
+	public int alterarSeguroTaxa(int apostaAssegurada, double taxa) {
+		for (Aposta aposta : this.apostas) {
+			if (aposta.getSeguro().getId() == apostaAssegurada) {
+				Seguro tipo = aposta.getSeguro();
+				if (tipo instanceof SeguroValor) {
+					SeguroValor tipoTaxa = (SeguroValor) tipo;
+					aposta.setSeguro(new SeguroTaxa(taxa, tipoTaxa.getCusto(), tipo.getId()));
+					return tipo.getId();
+				} else {
+					throw new UnsupportedOperationException("Aposta já é assegurada por taxa!");
+				}
+			}
+		} 
+		throw new IllegalArgumentException("Aposta assegurada não encontrada!");
 	}
 	
 	/**
@@ -140,16 +180,22 @@ public class Cenario {
 		return descricao;
 	}
 	
-	
+	public String exibirApostaAssegurada(int id) {
+		String descricao = "";
+		for (Aposta aposta : this.apostas) {
+			if (aposta.getSeguro().getId() == id)
+				return aposta.toString();
+		} return null;
+	}
 	
 	public int getSeguros() {
 		int dinheiroSeguro = 0;
 		for (Aposta aposta : apostas) {
-			if (aposta.getTipo() instanceof ApostaAsseguradaValor)
-				dinheiroSeguro += ((ApostaAsseguradaValor) aposta.getTipo()).getValorAssegurado();
+			if (aposta.getSeguro() instanceof SeguroValor)
+				dinheiroSeguro += ((SeguroValor) aposta.getSeguro()).getValorAssegurado();
 			else {
-				if (aposta.getTipo() instanceof ApostaAsseguradaTaxa)
-					dinheiroSeguro += aposta.getValor() * ((ApostaAsseguradaTaxa) aposta.getTipo()).getTaxa();
+				if (aposta.getSeguro() instanceof SeguroTaxa)
+					dinheiroSeguro += aposta.getValor() * ((SeguroTaxa) aposta.getSeguro()).getTaxa();
 			}
 		}
 		return dinheiroSeguro;

@@ -44,7 +44,7 @@ public class ApostaTest {
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void valorNegativo() {
-		Aposta aposta = new Aposta("Arthur Ferrão", -450, "N VAI ACONTECER");
+		Aposta aposta = new Aposta("Arthur Ferrï¿½o", -450, "N VAI ACONTECER");
 	}
 	
 	@SuppressWarnings("unused")
@@ -62,21 +62,45 @@ public class ApostaTest {
 	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void previsaoInvalida() {
-		Aposta aposta = new Aposta("Gabriel de Sousa", 4000, "Nunca nem vi, sei nem o que é isso.");
+		Aposta aposta = new Aposta("Gabriel de Sousa", 4000, "Nunca nem vi, sei nem o que ï¿½ isso.");
+	}
+	
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void valorAsseguradoNegativo() {
+		Aposta aposta = new Aposta("Mateus de Lima", 3000, "VAI ACONTECER", -1, 50, 2);
+	}
+	
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void valorAsseguradoZero() {
+		Aposta aposta = new Aposta("Mateus de Lima", 3000, "N VAI ACONTECER", 0, 50, 2);
+	}
+	
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void custoNegativo() {
+		Aposta aposta = new Aposta("Fanny Vieira", 3000, "N VAI ACONTECER", 500, -4, 2);
+	}
+	
+	@SuppressWarnings("unused")
+	@Test(expected = IllegalArgumentException.class)
+	public void custoZero() {
+		Aposta aposta = new Aposta("Fanny Vieira", 3000, "N VAI ACONTECER", 500, 0, 2);
 	}
 	
 	// --- Testes de toString --- 
 	
 	@Test
 	public void toStringIguais() {
-		String mensagem = "Esperando que as descrições sejam iguais.";
+		String mensagem = "Esperando que as descriï¿½ï¿½es sejam iguais.";
 		assertEquals(mensagem, aposta1.toString(), aposta2.toString());
 	}
 	
 	@Test
 	public void toStringDiferentes() {
 		Aposta aposta3 = new Aposta("Mateus de Lima", 1000, "   n Vai acONTEcer  ");
-		String mensagem = "Esperando que as descrições sejam iguais.";
+		String mensagem = "Esperando que as descriï¿½ï¿½es sejam iguais.";
 		assertNotEquals(mensagem, aposta1.toString(), aposta3.toString());
 	}
 	
