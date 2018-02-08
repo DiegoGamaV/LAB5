@@ -28,7 +28,7 @@ public class Cenario {
 	 */
 	public Cenario(String descricao) {
 		isNull(descricao);
-		isEmpity(descricao);
+		isEmpty(descricao);
 		this.descricao = descricao;
 		this.estado = "Nao finalizado";
 		this.apostas = new ArrayList<>();
@@ -45,7 +45,7 @@ public class Cenario {
 	 *                se descricao � composta apenas de espacos vazios.
 	 * @since Parte 1
 	 */
-	private void isEmpity(String descricao) {
+	private void isEmpty(String descricao) {
 		if (descricao.trim().equals(""))
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 	}
@@ -233,7 +233,6 @@ public class Cenario {
 				valorTotal += aposta.getValor();
 			}
 		}
-		valorTotal += getSeguros();
 		return valorTotal;
 	}
 

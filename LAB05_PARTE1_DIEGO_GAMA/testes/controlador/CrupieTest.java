@@ -22,7 +22,7 @@ public class CrupieTest {
 	@Before
 	public void setUp() {
 		controlador = new Crupie(10000, 0.10);
-		cenario1 = "O calendário da UFCG vai normalizar";
+		cenario1 = "O calendï¿½rio da UFCG vai normalizar";
 		cenario2 = "A nova grade vai se provar melhor que a anterior";
 		controlador.addCenario(cenario1);
 		controlador.addCenario(cenario2);
@@ -42,52 +42,52 @@ public class CrupieTest {
 		Crupie controlador1 = new Crupie(500, -0.10);
 	}
 
-	// --- Testes de Criação de Cenários
+	// --- Testes de Criaï¿½ï¿½o de Cenï¿½rios
 
 	@Test
 	public void cenarioAdicionado() {
-		String mensagem = "Esperando que o índice do cenário criado seja 1.";
-		assertEquals(mensagem, 3, controlador.addCenario("Cenário 3"));
+		String mensagem = "Esperando que o ï¿½ndice do cenï¿½rio criado seja 1.";
+		assertEquals(mensagem, 3, controlador.addCenario("Cenï¿½rio 3"));
 	}
 
-	// --- Testes de Criação de Apostas ---
+	// --- Testes de Criaï¿½ï¿½o de Apostas ---
 
 	@Test
 	public void apostaAdicionada() {
-		String mensagem = "Esperando conseguir adicionar aposta ao cenário adicionado.";
+		String mensagem = "Esperando conseguir adicionar aposta ao cenï¿½rio adicionado.";
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		assertTrue(mensagem, controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void apostaCenarioZero() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		controlador1.addCenario("Previsão do Sikêira Júnior");
+		controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(0, "Gabriel de Sousa", 50, "VAI ACONTECER");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void apostaCenarioNegativo() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		controlador1.addCenario("Previsão do Sikêira Júnior");
+		controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(-1, "Gabriel de Sousa", 50, "VAI ACONTECER");
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void apostaCenarioInexistente() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		controlador1.addCenario("Previsão do Sikêira Júnior");
+		controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(99, "Gabriel de Sousa", 50, "VAI ACONTECER");
 	}
 
-	// --- Testes de Finalização de Cenário ---
+	// --- Testes de Finalizaï¿½ï¿½o de Cenï¿½rio ---
 
 	@Test
 	public void cenarioNaoOcorreu() {
-		String mensagem = "Esperando que o cenário tenha sido finalizado e que 10% do dinheiro da aposta perdida tenha sido adicionado ao dinheiro do caixa.";
+		String mensagem = "Esperando que o cenï¿½rio tenha sido finalizado e que 10% do dinheiro da aposta perdida tenha sido adicionado ao dinheiro do caixa.";
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER");
 		controlador1.finalizarCenario(numero, false);
 		assertEquals(mensagem, 1005, controlador1.getDinheiroAtual());
@@ -95,9 +95,9 @@ public class CrupieTest {
 
 	@Test
 	public void cenarioOcorreu() {
-		String mensagem = "Esperando que o cenário tenha sido finalizado e que não haja mudança no dinheiro do caixa.";
+		String mensagem = "Esperando que o cenï¿½rio tenha sido finalizado e que nï¿½o haja mudanï¿½a no dinheiro do caixa.";
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER");
 		controlador1.finalizarCenario(numero, true);
 		assertEquals(mensagem, 1000, controlador1.getDinheiroAtual());
@@ -106,7 +106,7 @@ public class CrupieTest {
 	@Test(expected = UnsupportedOperationException.class)
 	public void cenarioJaFinalizado() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER");
 		controlador1.finalizarCenario(numero, true);
 		controlador1.finalizarCenario(numero, false);
@@ -115,7 +115,7 @@ public class CrupieTest {
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void cenarioInexistente() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER");
 		controlador1.finalizarCenario(99, true);
 	}
@@ -123,7 +123,7 @@ public class CrupieTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void cenarioZero() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER");
 		controlador1.finalizarCenario(0, true);
 	}
@@ -131,12 +131,12 @@ public class CrupieTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void cenarioNegativo() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		int numero = controlador1.addCenario("Previsão do Sikêira Júnior");
+		int numero = controlador1.addCenario("Previsï¿½o do Sikï¿½ira Jï¿½nior");
 		controlador1.addAposta(numero, "Gabriel de Sousa", 50, "VAI ACONTECER");
 		controlador1.finalizarCenario(-1, true);
 	}
 
-	// --- Testes de Listagem de Cenários ---
+	// --- Testes de Listagem de Cenï¿½rios ---
 
 	@Test
 	public void listagemCenarioCorreta() {
@@ -146,11 +146,11 @@ public class CrupieTest {
 		assertEquals(mensagem, lista, controlador.listarCenarios());
 	}
 
-	// --- Testes de Exibição de Cenários ---
+	// --- Testes de Exibiï¿½ï¿½o de Cenï¿½rios ---
 
 	@Test
 	public void cenarioExibido() {
-		String mensagem = "Esperando conseguir exibir corretamente o cenário";
+		String mensagem = "Esperando conseguir exibir corretamente o cenï¿½rio";
 		String descricao = "1 - " + cenario1 + " - Nao finalizado";
 		assertEquals(mensagem, descricao, controlador.exibirCenario(1));
 	}
@@ -182,7 +182,7 @@ public class CrupieTest {
 	@Test
 	public void acrescimoNoCaixa() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		String mensagem = "Esperando que o dinheiro no caixa após a aposta tenha incrementado em 50 (10% de 500)";
+		String mensagem = "Esperando que o dinheiro no caixa apï¿½s a aposta tenha incrementado em 50 (10% de 500)";
 		int numero = controlador1.addCenario("Eu vou terminar isso hoje!");
 		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER");
 		controlador1.addAposta(numero, "Pessimismo", 500, "N VAI ACONTECER");
@@ -193,7 +193,7 @@ public class CrupieTest {
 	@Test
 	public void acrescimoSeguro() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		String mensagem = "Esperando que haja um acréscimo de 50 centavos no caixa (custo do seguro)";
+		String mensagem = "Esperando que haja um acrï¿½scimo de 50 centavos no caixa (custo do seguro)";
 		int numero = controlador1.addCenario("Vou terminar isso um dia");
 		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER", 200, 50);
 		assertEquals(mensagem, 1050, controlador1.getDinheiroAtual());
@@ -202,7 +202,7 @@ public class CrupieTest {
 	@Test
 	public void decrescimoAsseguradoValor() {
 		Crupie controlador1 = new Crupie(950, 0.10);
-		String mensagem = "Esperando que haja um decréscimo de 150 (+50 custo, -200 valor assegurado)";
+		String mensagem = "Esperando que haja um decrï¿½scimo de 150 (+50 custo, -200 valor assegurado)";
 		int numero = controlador1.addCenario("Vou terminar isso um dia");
 		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER", 200, 50);
 		controlador1.finalizarCenario(numero, false);
@@ -213,7 +213,7 @@ public class CrupieTest {
 	@Test
 	public void decrescimoAsseguradoTaxa() {
 		Crupie controlador1 = new Crupie(950, 0.10);
-		String mensagem = "Esperando que não haja decréscimo (+50 custo, -50 valor assegurado, isto é, 10% de 500)";
+		String mensagem = "Esperando que nï¿½o haja decrï¿½scimo (+50 custo, -50 valor assegurado, isto ï¿½, 10% de 500)";
 		int numero = controlador1.addCenario("Vou terminar isso um dia");
 		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER", 0.10, 50);
 		controlador1.finalizarCenario(numero, false);
@@ -221,7 +221,7 @@ public class CrupieTest {
 		assertEquals(mensagem, 1000, controlador1.getDinheiroAtual());
 	}
 
-	// --- Testes do Cálculo de Dinheiro para o Caixa ---
+	// --- Testes do Cï¿½lculo de Dinheiro para o Caixa ---
 
 	@Test
 	public void dinheiroCorreto() {
@@ -273,12 +273,12 @@ public class CrupieTest {
 		controlador1.getDinheiroParaCaixa(1);
 	}
 
-	// --- Testes do Cálculo de Rateio ---
+	// --- Testes do Cï¿½lculo de Rateio ---
 
 	@Test
 	public void rateioCorreto() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
-		String mensagem = "Esperando que o rateio seja 450, pois há o desconto de 50 para o caixa";
+		String mensagem = "Esperando que o rateio seja 450, pois hï¿½ o desconto de 50 para o caixa";
 		int numero = controlador1.addCenario("Eu vou terminar isso hoje!");
 		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER");
 		controlador1.addAposta(numero, "Pessimismo", 500, "N VAI ACONTECER");
@@ -289,7 +289,7 @@ public class CrupieTest {
 	@Test
 	public void rateioComBonus() {
 		Crupie controlador1 = new Crupie(10000, 0.10);
-		String mensagem = "Esperando que o rateio seja 550, pois é o 450 + 100 do bônus";
+		String mensagem = "Esperando que o rateio seja 550, pois ï¿½ o 450 + 100 do bï¿½nus";
 		int numero = controlador1.addCenario("Vou terminar isso um dia", 100);
 		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER");
 		controlador1.addAposta(numero, "Pessimismo", 500, "N VAI ACONTECER");

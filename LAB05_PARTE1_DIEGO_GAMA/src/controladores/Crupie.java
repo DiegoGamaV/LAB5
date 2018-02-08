@@ -198,6 +198,7 @@ public class Crupie {
 				throw new UnsupportedOperationException(
 						"Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
 			int valorBruto = consulta.calcularDinheiro();
+			System.out.println((int) Math.floor(valorBruto * this.caixa.getTaxa()));
 			return (int) Math.floor(valorBruto * this.caixa.getTaxa());
 		} catch (IndexOutOfBoundsException exception) {
 			throw new IndexOutOfBoundsException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
