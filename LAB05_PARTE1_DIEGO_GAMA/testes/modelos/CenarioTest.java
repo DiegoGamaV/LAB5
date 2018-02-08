@@ -67,7 +67,7 @@ public class CenarioTest {
 	@Test
 	public void identificadoresCertos() {
 		String mensagem = "Esperando que os identificadores da aposta criada manualmente e da aposta criada pelo cenário sejam iguais";
-		assertEquals(mensagem, aposta1.getSeguro().getId(), cenario3.addAposta("Mateus de Lima", 25, "VAI ACONTECER", 5, 10));
+		assertEquals(mensagem, 3, cenario3.addAposta("Mateus de Lima", 25, "VAI ACONTECER", 5, 10));
 	}
 
 	@Test

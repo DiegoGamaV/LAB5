@@ -189,6 +189,37 @@ public class CrupieTest {
 		controlador1.finalizarCenario(numero, true);
 		assertEquals(mensagem, 1050, controlador1.getDinheiroAtual());
 	}
+	
+	@Test
+	public void acrescimoSeguro() {
+		Crupie controlador1 = new Crupie(1000, 0.10);
+		String mensagem = "Esperando que haja um acréscimo de 50 centavos no caixa (custo do seguro)";
+		int numero = controlador1.addCenario("Vou terminar isso um dia");
+		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER", 200, 50);
+		assertEquals(mensagem, 1050, controlador1.getDinheiroAtual());
+	}
+	
+	@Test
+	public void decrescimoAsseguradoValor() {
+		Crupie controlador1 = new Crupie(950, 0.10);
+		String mensagem = "Esperando que haja um decréscimo de 150 (+50 custo, -200 valor assegurado)";
+		int numero = controlador1.addCenario("Vou terminar isso um dia");
+		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER", 200, 50);
+		controlador1.finalizarCenario(numero, false);
+		controlador1.getDinheiroVencedores(numero);
+		assertEquals(mensagem, 850, controlador1.getDinheiroAtual());
+	}
+	
+	@Test
+	public void decrescimoAsseguradoTaxa() {
+		Crupie controlador1 = new Crupie(950, 0.10);
+		String mensagem = "Esperando que não haja decréscimo (+50 custo, -50 valor assegurado, isto é, 10% de 500)";
+		int numero = controlador1.addCenario("Vou terminar isso um dia");
+		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER", 0.10, 50);
+		controlador1.finalizarCenario(numero, false);
+		controlador1.getDinheiroVencedores(numero);
+		assertEquals(mensagem, 1000, controlador1.getDinheiroAtual());
+	}
 
 	// --- Testes do Cálculo de Dinheiro para o Caixa ---
 
@@ -253,6 +284,17 @@ public class CrupieTest {
 		controlador1.addAposta(numero, "Pessimismo", 500, "N VAI ACONTECER");
 		controlador1.finalizarCenario(numero, true);
 		assertEquals(mensagem, 450, controlador1.getDinheiroVencedores(numero));
+	}
+	
+	@Test
+	public void rateioComBonus() {
+		Crupie controlador1 = new Crupie(10000, 0.10);
+		String mensagem = "Esperando que o rateio seja 550, pois é o 450 + 100 do bônus";
+		int numero = controlador1.addCenario("Vou terminar isso um dia", 100);
+		controlador1.addAposta(numero, "Otimismo", 500, "VAI ACONTECER");
+		controlador1.addAposta(numero, "Pessimismo", 500, "N VAI ACONTECER");
+		controlador1.finalizarCenario(numero, true);
+		assertEquals(mensagem, 550, controlador1.getDinheiroVencedores(numero));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

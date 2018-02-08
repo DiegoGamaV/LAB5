@@ -232,7 +232,7 @@ public class Crupie {
 			double dinheiroParaCaixa = consulta.calcularDinheiro() * this.caixa.getTaxa();
 			double valorBruto = (double) consulta.calcularDinheiro();
 			int rateio = (int) Math.floor(valorBruto - dinheiroParaCaixa);
-			int seguroTotal = (int) Math.floor(consulta.getSeguros());
+			int seguroTotal = consulta.getSeguros();
 			this.caixa.subtractDinheiro(seguroTotal);
 			if (consulta instanceof CenarioBonus)
 				rateio += ((CenarioBonus) consulta).getBonus();

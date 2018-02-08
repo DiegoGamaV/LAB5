@@ -233,6 +233,7 @@ public class Cenario {
 				valorTotal += aposta.getValor();
 			}
 		}
+		valorTotal += getSeguros();
 		return valorTotal;
 	}
 
