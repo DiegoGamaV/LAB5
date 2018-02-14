@@ -45,11 +45,11 @@ public class Sistema {
 	}
 	
 	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
-		return this.alterarSeguroValor(cenario, apostaAssegurada, valor);
+		return this.controlador.alterarSeguroValor(cenario, apostaAssegurada, valor);
 	}
 	
 	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
-		return this.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
+		return this.controlador.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
 	}
 	
 	public int totalDeApostas(int cenario) {

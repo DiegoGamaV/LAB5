@@ -12,7 +12,7 @@ public class CenarioBonus extends Cenario {
 	
 	private void isValid(int bonus) {
 		if (bonus <= 0)
-			throw new IllegalArgumentException("Bônus não pode ser nulo ou negativo!");
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Bonus invalido");
 	}
 	
 	public int getBonus() {
@@ -49,7 +49,7 @@ public class CenarioBonus extends Cenario {
 	
 	@Override
 	public String toString() {
-		return super.toString() + " - " + this.bonus;
+		return super.toString() + " - R$ " + String.format("%.2f", this.bonus/100.0);
 	}
 
 }
