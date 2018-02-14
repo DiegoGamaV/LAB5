@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="modelos.Cenario" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/Cenario.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="modelos.Cenario" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/Cenario.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="950" y="40"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="modelos.Caixa" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/Caixa.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="modelos.Caixa" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/Caixa.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1175" y="452"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="modelos.Aposta" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/Aposta.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="modelos.Aposta" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/Aposta.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="263" width="184" x="586" y="-161"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="controladores.Crupie" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/controladores/Crupie.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="controladores.Crupie" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/controladores/Crupie.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="620" y="391"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="controladores.Sistema" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/controladores/Sistema.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="controladores.Sistema" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/controladores/Sistema.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="239" y="390"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="modelos.Seguro" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/Seguro.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="modelos.Seguro" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/Seguro.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="419" y="-30"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="modelos.SeguroTaxa" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/SeguroTaxa.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="modelos.SeguroTaxa" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/SeguroTaxa.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="171" y="-116"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="modelos.SeguroValor" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/SeguroValor.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="modelos.SeguroValor" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/SeguroValor.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="174" y="87"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,8 +73,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="modelos.CenarioBonus" project="LAB05_PARTE1_DIEGO_GAMA" 
-    file="/LAB05_PARTE1_DIEGO_GAMA/src/modelos/CenarioBonus.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="modelos.CenarioBonus" project="Lab052_DIEGO_GAMA" 
+    file="/Lab052_DIEGO_GAMA/src/modelos/CenarioBonus.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1194" y="40"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,83 +82,87 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="10">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <association id="11">    
-    <bendpoint x="907" y="391"/>    
-    <bendpoint x="907" y="452"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="12" name="caixa">        
-        <position height="0" width="0" x="813" y="339"/>      
-      </attribute>      
-      <multiplicity id="13" minimum="0" maximum="1">        
-        <position height="0" width="0" x="813" y="339"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
+  <association id="10">    
     <bendpoint x="952" y="392"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="15" name="cenarios">        
+      <attribute id="11" name="cenarios">        
         <position height="0" width="0" x="-127" y="-61"/>      
       </attribute>      
-      <multiplicity id="16" minimum="0" maximum="2147483647">        
+      <multiplicity id="12" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="-127" y="-61"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="17">    
-    <bendpoint x="308" y="-115"/>    
-    <bendpoint x="308" y="-29"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="18">    
+  <association id="13">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="19" name="seguro"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
+      <attribute id="14" name="seguro">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="21">    
-    <bendpoint x="807" y="40"/>    
-    <bendpoint x="807" y="-29"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="22" name="apostas">        
-        <position height="0" width="0" x="-51" y="-93"/>      
-      </attribute>      
-      <multiplicity id="23" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-51" y="-93"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="24">    
+  <generalization id="16">    
     <bendpoint x="309" y="87"/>    
     <bendpoint x="309" y="-30"/>    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="25">    
+  <association id="17">    
+    <bendpoint x="907" y="391"/>    
+    <bendpoint x="907" y="452"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="18" name="caixa">        
+        <position height="0" width="0" x="813" y="339"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="813" y="339"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="21">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="26" name="controlador">        
+      <attribute id="22" name="controlador">        
         <position height="0" width="0" x="-106" y="-13"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
+      <multiplicity id="23" minimum="0" maximum="1">        
         <position height="0" width="0" x="-106" y="-13"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="24">    
+    <bendpoint x="807" y="40"/>    
+    <bendpoint x="807" y="-29"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="25" name="apostas">        
+        <position height="0" width="0" x="-51" y="-93"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-51" y="-93"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <bendpoint x="308" y="-115"/>    
+    <bendpoint x="308" y="-29"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
