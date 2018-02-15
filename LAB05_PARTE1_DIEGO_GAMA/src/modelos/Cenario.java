@@ -1,30 +1,32 @@
 package modelos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * @author Diego Alves Gama
  * 
- *         A classe Cenario é utilizada para abstrair uma situação da vida real.
- *         Um Cenario contém uma descrição que representa a situação de que o
+ *         A classe Cenario ï¿½ utilizada para abstrair uma situaï¿½ï¿½o da vida real.
+ *         Um Cenario contï¿½m uma descriï¿½ï¿½o que representa a situaï¿½ï¿½o de que o
  *         Cenario trata, o estado no qual este Cenario se encontra, e uma
  *         ArrayList de objetos Aposta sobre este Cenario.
  * @since Parte 1
  */
-public class Cenario {
+public class Cenario implements Comparable<Cenario> {
 
 	private String descricao;
 	private String estado;
 	private List<Aposta> apostas;
 	private int contador;
+	private int id;
 
 	/**
-	 * Constrói um Cenario com uma descrição específica e um estado padrão como 'Nao
-	 * finalizado'. Uma descrição nula ou vazia não é aceita.
+	 * Constrï¿½i um Cenario com uma descriï¿½ï¿½o especï¿½fica e um estado padrï¿½o como 'Nao
+	 * finalizado'. Uma descriï¿½ï¿½o nula ou vazia nï¿½o ï¿½ aceita.
 	 * 
 	 * @param descricao
-	 *            A descrição sobre o que o cenário se trata.
+	 *            A descriï¿½ï¿½o sobre o que o cenï¿½rio se trata.
 	 * @since Parte 1
 	 */
 	public Cenario(String descricao) {
@@ -34,16 +36,17 @@ public class Cenario {
 		this.estado = "Nao finalizado";
 		this.apostas = new ArrayList<>();
 		this.contador = 1;
+		this.id = 0;
 	}
 
 	/**
-	 * Método de checagem que avalia se a String descricao passada é composta apenas
-	 * de espaços vazios.
+	 * Mï¿½todo de checagem que avalia se a String descricao passada ï¿½ composta apenas
+	 * de espaï¿½os vazios.
 	 * 
 	 * @param descricao
 	 *            A descricao do Cenario a ser verificada.
 	 * @exception IllegalArgumentException
-	 *                se descricao é composta apenas de espacos vazios.
+	 *                se descricao ï¿½ composta apenas de espacos vazios.
 	 * @since Parte 1
 	 */
 	private void isEmpty(String descricao) {
@@ -52,12 +55,12 @@ public class Cenario {
 	}
 
 	/**
-	 * Método de checagem que avalia se a String descricao passada é nula.
+	 * Mï¿½todo de checagem que avalia se a String descricao passada ï¿½ nula.
 	 * 
 	 * @param descricao
 	 *            A descricao do Cenario a ser verificada.
 	 * @exception NullPointerException
-	 *                se a descricao é nula.
+	 *                se a descricao ï¿½ nula.
 	 * @since Parte 1
 	 */
 	private void isNull(String descricao) {
@@ -76,13 +79,13 @@ public class Cenario {
 	}
 
 	/**
-	 * Muda o valor do campo estado. Os únicos valores válidos sï¿½o 'Finalizado
+	 * Muda o valor do campo estado. Os ï¿½nicos valores vï¿½lidos sï¿½o 'Finalizado
 	 * (ocorreu)' e 'Finalizado (n ocorreu)'.
 	 * 
 	 * @param estado
 	 *            O valor de String a ser atualizado no campo estado.
 	 * @exception IllegalArgumentException
-	 *                se o valor for diferente dos válidos.
+	 *                se o valor for diferente dos vï¿½lidos.
 	 * @since Parte 1
 	 */
 	public void setEstado(String estado) {
@@ -93,18 +96,26 @@ public class Cenario {
 		}
 	}
 
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	/**
 	 * Cria e adiciona uma Aposta na lista de Apostas do Cenario.
 	 * 
 	 * @param apostador
-	 *            Nome do apostador responsável.
+	 *            Nome do apostador responsï¿½vel.
 	 * @param valor
 	 *            Quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            Previsão quanto a fatalidade do Cenario. Os únicos valores válidos
-	 *            são "VAI ACONTECER" e "N VAI ACONTECER".
+	 *            Previsï¿½o quanto a fatalidade do Cenario. Os ï¿½nicos valores vï¿½lidos
+	 *            sï¿½o "VAI ACONTECER" e "N VAI ACONTECER".
 	 * @return true se a Aposta for adicionada com sucesso, e false caso o
-	 *         contrário.
+	 *         contrï¿½rio.
 	 * @since Parte 1
 	 */
 	public boolean addAposta(String apostador, int valor, String previsao) {
@@ -115,12 +126,12 @@ public class Cenario {
 	 * Cria e adiciona uma Aposta assegurada por valor na lista de Apostas do Cenario.
 	 * 
 	 * @param apostador
-	 *            Nome do apostador responsável.
+	 *            Nome do apostador responsï¿½vel.
 	 * @param valor
 	 *            Quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            Previsão quanto a fatalidade do Cenario. Os únicos valores válidos
-	 *            são "VAI ACONTECER" e "N VAI ACONTECER".
+	 *            Previsï¿½o quanto a fatalidade do Cenario. Os ï¿½nicos valores vï¿½lidos
+	 *            sï¿½o "VAI ACONTECER" e "N VAI ACONTECER".
 	 * @param valorAssegurado
 	 * 			  Valor a ser retirado do caixa caso a Aposta seja perdedora.
 	 * @param custo
@@ -139,12 +150,12 @@ public class Cenario {
 	 * Cria e adiciona uma Aposta assegurada por valor na lista de Apostas do Cenario.
 	 * 
 	 * @param apostador
-	 *            Nome do apostador responsável.
+	 *            Nome do apostador responsï¿½vel.
 	 * @param valor
 	 *            Quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            Previsão quanto a fatalidade do Cenario. Os únicos valores válidos
-	 *            são "VAI ACONTECER" e "N VAI ACONTECER".
+	 *            Previsï¿½o quanto a fatalidade do Cenario. Os ï¿½nicos valores vï¿½lidos
+	 *            sï¿½o "VAI ACONTECER" e "N VAI ACONTECER".
 	 * @param taxa
 	 * 			  Porcentagem do valor da aposta a ser retirada do caixa caso a Aposta seja perdedora.
 	 * @param custo
@@ -167,8 +178,8 @@ public class Cenario {
 	 * @param valor
 	 *            Valor do seguro da Aposta.     
 	 * @return O identificador desta Aposta assegurada neste Cenario.
-	 * @exception UnsupportedOperationException se a Aposta já for assegurada por valor.
-	 * @exception IllegalArgumentException se a Aposta assegurada não for encontrada.
+	 * @exception UnsupportedOperationException se a Aposta jï¿½ for assegurada por valor.
+	 * @exception IllegalArgumentException se a Aposta assegurada nï¿½o for encontrada.
 	 * @since Parte 2
 	 */
 	public int alterarSeguroValor(int apostaAssegurada, int valor) {
@@ -195,8 +206,8 @@ public class Cenario {
 	 * @param taxa
 	 *            Taxa do seguro da Aposta.     
 	 * @return O identificador desta Aposta assegurada neste Cenario.
-	 * @exception UnsupportedOperationException se a Aposta já for assegurada por taxa.
-	 * @exception IllegalArgumentException se a Aposta assegurada não for encontrada.
+	 * @exception UnsupportedOperationException se a Aposta jï¿½ for assegurada por taxa.
+	 * @exception IllegalArgumentException se a Aposta assegurada nï¿½o for encontrada.
 	 * @since Parte 2
 	 */
 	public int alterarSeguroTaxa(int apostaAssegurada, double taxa) {
@@ -226,7 +237,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Exibe uma representação textual de todas as Apostas deste Cenario.
+	 * Exibe uma representaï¿½ï¿½o textual de todas as Apostas deste Cenario.
 	 * 
 	 * @return a lista de todas as apostas deste Cenario.
 	 * @since Parte 1
@@ -240,11 +251,11 @@ public class Cenario {
 	}
 	
 	/**
-	 * Exibe uma representação textual da Aposta assegurada específica.
+	 * Exibe uma representaï¿½ï¿½o textual da Aposta assegurada especï¿½fica.
 	 * 
 	 * @param id
 	 * 			   Identificador da Aposta assegurada.
-	 * @return representação textual da Aposta desejada.
+	 * @return representaï¿½ï¿½o textual da Aposta desejada.
 	 * @since Parte 2
 	 */
 	public String exibirApostaAssegurada(int id) {
@@ -255,7 +266,7 @@ public class Cenario {
 	}
 	
 	/**
-	 * Calcula o somatório de todos os seguros de todas as Apostas asseguradas deste Cenario.
+	 * Calcula o somatï¿½rio de todos os seguros de todas as Apostas asseguradas deste Cenario.
 	 * 
 	 * @return total de todos os seguros.
 	 * @since Parte 2
@@ -274,7 +285,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Método de checagem que verifica se a Aposta estï¿½ correta sobre a fatalidade
+	 * Mï¿½todo de checagem que verifica se a Aposta estï¿½ correta sobre a fatalidade
 	 * do Cenario.
 	 * 
 	 * @param aposta
@@ -295,7 +306,7 @@ public class Cenario {
 	/**
 	 * Calcula e retorna o dinheiro de todas as Apostas perdedoras.
 	 * 
-	 * @return o somatório calculado.
+	 * @return o somatï¿½rio calculado.
 	 * @since Parte 1
 	 */
 	public int calcularDinheiro() {
@@ -311,7 +322,7 @@ public class Cenario {
 	/**
 	 * Calcula a quantia total de todas as Apostas deste Cenario.
 	 * 
-	 * @return o somatório calculado.
+	 * @return o somatï¿½rio calculado.
 	 * @since Parte 1
 	 */
 	public int calcularValorTotal() {
@@ -323,7 +334,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Retorna a representação textual de um Cenario.
+	 * Retorna a representaï¿½ï¿½o textual de um Cenario.
 	 * 
 	 * @return a String que representa este Cenario.
 	 * @since Parte 1
@@ -350,7 +361,7 @@ public class Cenario {
 	}
 
 	/**
-	 * Compara se os dois objetos são considerados equivalentes.
+	 * Compara se os dois objetos sï¿½o considerados equivalentes.
 	 * 
 	 * @param obj
 	 *            O objeto a ser comparado com este Cenario.
@@ -376,6 +387,11 @@ public class Cenario {
 		if (!estado.equals(other.estado))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Cenario o) {
+		return this.descricao.compareTo(o.descricao);
 	}
 
 }

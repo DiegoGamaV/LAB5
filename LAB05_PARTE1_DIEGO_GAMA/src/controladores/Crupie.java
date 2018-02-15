@@ -3,13 +3,14 @@ package controladores;
 import java.util.ArrayList;
 import java.util.List;
 
+import comparadores.ComparadorCenarioNumApostas;
 import modelos.*;
 
 /**
  * @author Diego Alves Gama
  * 
- *         A classe Crupie é uma classe controladora de sessão das classes
- *         Aposta e Caixa. Representa um crupiê, um gerente de apostas e regente
+ *         A classe Crupie ï¿½ uma classe controladora de sessï¿½o das classes
+ *         Aposta e Caixa. Representa um crupiï¿½, um gerente de apostas e regente
  *         de jogos de azar.
  * 
  * @since Parte 1
@@ -18,19 +19,21 @@ public class Crupie {
 
 	private List<Cenario> cenarios;
 	private Caixa caixa;
+	private ComparadorCenarioNumApostas comparador;
 
 	/**
-	 * Constrói um objeto Crupie sem um caixa específico.
+	 * Constrï¿½i um objeto Crupie sem um caixa especï¿½fico.
 	 * 
 	 * @since Parte 1
 	 */
 	public Crupie() {
 		this.cenarios = new ArrayList<>();
+		this.comparador = new ComparadorCenarioNumApostas();
 	}
 
 	/**
-	 * Constrói um objeto Crupie com o dinheiro atual do caixa e a taxa de ganho sob
-	 * apostas específicos. Valores negativos não são aceitos.
+	 * Constrï¿½i um objeto Crupie com o dinheiro atual do caixa e a taxa de ganho sob
+	 * apostas especï¿½ficos. Valores negativos nï¿½o sï¿½o aceitos.
 	 * 
 	 * @param caixa
 	 *            Quantia inicial do dinheiro do Caixa em centavos.
@@ -41,12 +44,13 @@ public class Crupie {
 	 */
 	public Crupie(int caixa, double taxa) {
 		this.cenarios = new ArrayList<>();
+		this.comparador = new ComparadorCenarioNumApostas();
 		isValid(caixa, taxa);
 		this.caixa = new Caixa(caixa, taxa);
 	}
 
 	/**
-	 * Método de checagem que valida se a quantia e taxa passadas são não-negativas.
+	 * Mï¿½todo de checagem que valida se a quantia e taxa passadas sï¿½o nï¿½o-negativas.
 	 * 
 	 * @param caixa
 	 *            Quantia em centavos a ser analizada.
@@ -55,7 +59,7 @@ public class Crupie {
 	 * @exception IllegalArgumentException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> Valor de caixa é negativo. </i> <i> Taxa é negativa. </i>
+	 *                <i> Valor de caixa ï¿½ negativo. </i> <i> Taxa ï¿½ negativa. </i>
 	 *                </nl>
 	 * @since Parte 1
 	 */
@@ -70,21 +74,23 @@ public class Crupie {
 	 * Cria e cadastra um Cenario na lista de Cenarios.
 	 * 
 	 * @param descricao
-	 *            Descrição do Cenario a ser adicionado.
+	 *            Descriï¿½ï¿½o do Cenario a ser adicionado.
 	 * @return o numero do Cenario na lista.
 	 * @since Parte 1
 	 */
 	public int addCenario(String descricao) {
 		Cenario cenario = new Cenario(descricao);
 		this.cenarios.add(cenario);
-		return this.cenarios.indexOf(cenario) + 1;
+		int id = this.cenarios.indexOf(cenario) + 1;
+		cenario.setId(id);
+		return id;
 	}
 	
 	/**
 	 * Cria e cadastra um CenarioBonus na lista de Cenario.
 	 * 
 	 * @param descricao
-	 *            Descrição do Cenario a ser adicionado.
+	 *            Descriï¿½ï¿½o do Cenario a ser adicionado.
 	 * @return o numero do Cenario na lista.
 	 * @since Parte 2
 	 */
@@ -92,24 +98,26 @@ public class Crupie {
 		Cenario cenario = new CenarioBonus(descricao, bonus);
 		this.caixa.subtractDinheiro(bonus);
 		this.cenarios.add(cenario);
-		return this.cenarios.indexOf(cenario) + 1;
+		int id = this.cenarios.indexOf(cenario) + 1;
+		cenario.setId(id);
+		return id;
 	}
 
 	/**
-	 * Finaliza um Cenario específico, alterando o estado de acordo com o valor de
-	 * ocorrência especificado. Calcula também o valor de ganho do Caixa sob as
+	 * Finaliza um Cenario especï¿½fico, alterando o estado de acordo com o valor de
+	 * ocorrï¿½ncia especificado. Calcula tambï¿½m o valor de ganho do Caixa sob as
 	 * apostas perdedoras e adiciona a quantia do Caixa.
 	 * 
 	 * @param cenario
-	 *            número do Cenario que será finalizado.
+	 *            nï¿½mero do Cenario que serï¿½ finalizado.
 	 * @param ocorreu
-	 *            Booleano que representa o valor de ocorrência do Cenario.
+	 *            Booleano que representa o valor de ocorrï¿½ncia do Cenario.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception UnsupportedOperationException
-	 *                se o Cenario já tiver sido finalizado anteriormente.
+	 *                se o Cenario jï¿½ tiver sido finalizado anteriormente.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @since Parte 1
 	 */
@@ -133,7 +141,7 @@ public class Crupie {
 	}
 
 	/**
-	 * Exibe a representação textual da lista de Cenarios cadastrados.
+	 * Exibe a representaï¿½ï¿½o textual da lista de Cenarios cadastrados.
 	 * 
 	 * @return a String que representa os Cenarios cadastrados.
 	 * @since Parte 1
@@ -147,14 +155,14 @@ public class Crupie {
 	}
 
 	/**
-	 * Exibe a representação textual do Cenario de mesmo número.
+	 * Exibe a representaï¿½ï¿½o textual do Cenario de mesmo nï¿½mero.
 	 * 
 	 * @param cenario
-	 *            número do Cenario desejado.
+	 *            nï¿½mero do Cenario desejado.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return a String que representa o Cenario escolhido.
 	 * @since Parte 1
@@ -182,17 +190,17 @@ public class Crupie {
 	}
 
 	/**
-	 * Consulta o valor das Apostas perdedoras do Cenario específico que será
+	 * Consulta o valor das Apostas perdedoras do Cenario especï¿½fico que serï¿½
 	 * encaminhado ao Caixa.
 	 * 
 	 * @param cenario
-	 *            número do Cenario desejado.
+	 *            nï¿½mero do Cenario desejado.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception UnsupportedOperationException
-	 *                se o Cenario não estiver finalizado.
+	 *                se o Cenario nï¿½o estiver finalizado.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return a quantia em centavos reservada ao Caixa.
 	 * @since Parte 1
@@ -214,17 +222,17 @@ public class Crupie {
 	}
 
 	/**
-	 * Consulta o rateio das Apostas perdedoras do Cenario específico que será
-	 * distribuído aos vencedores.
+	 * Consulta o rateio das Apostas perdedoras do Cenario especï¿½fico que serï¿½
+	 * distribuï¿½do aos vencedores.
 	 * 
 	 * @param cenario
-	 *            número do Cenario desejado.
+	 *            nï¿½mero do Cenario desejado.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception UnsupportedOperationException
-	 *                se o Cenario não estiver finalizado.
+	 *                se o Cenario nï¿½o estiver finalizado.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return o rateio em centavos reservada ao Caixa.
 	 * @since Parte 1
@@ -253,22 +261,22 @@ public class Crupie {
 	}
 
 	/**
-	 * Cria e adiciona uma Aposta a um Cenario existente específico.
+	 * Cria e adiciona uma Aposta a um Cenario existente especï¿½fico.
 	 * 
 	 * @param cenario
-	 *            O numero do Cenario em que a aposta será adicionada.
+	 *            O numero do Cenario em que a aposta serï¿½ adicionada.
 	 * @param apostador
-	 *            O nome do apostador responsável pela Aposta.
+	 *            O nome do apostador responsï¿½vel pela Aposta.
 	 * @param valor
 	 *            A quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            A previsão sobre a fatalidade do Cenario.
+	 *            A previsï¿½o sobre a fatalidade do Cenario.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
-	 * @return true se a Aposta for adicionada com sucesso, false caso o contrário.
+	 * @return true se a Aposta for adicionada com sucesso, false caso o contrï¿½rio.
 	 * @since Parte 1
 	 */
 	public boolean addAposta(int cenario, String apostador, int valor, String previsao) {
@@ -283,24 +291,24 @@ public class Crupie {
 	}
 	
 	/**
-	 * Cria e adiciona uma Aposta assegurada por valor a um Cenario específico.
+	 * Cria e adiciona uma Aposta assegurada por valor a um Cenario especï¿½fico.
 	 * 
 	 * @param cenario
-	 *            O numero do Cenario em que a aposta será adicionada.
+	 *            O numero do Cenario em que a aposta serï¿½ adicionada.
 	 * @param apostador
-	 *            O nome do apostador responsável pela Aposta.
+	 *            O nome do apostador responsï¿½vel pela Aposta.
 	 * @param valor
 	 *            A quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            A previsão sobre a fatalidade do Cenario.
+	 *            A previsï¿½o sobre a fatalidade do Cenario.
 	 * @param valorAssegurado
 	 * 			  O valor em centavos retirado do Caixa caso a aposta seja perdedora.
 	 * @param custo
-	 *            O valor necessário a ser pago ao Caixa para cadastrar um seguro.
+	 *            O valor necessï¿½rio a ser pago ao Caixa para cadastrar um seguro.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return o identificador da aposta assegurada.
 	 * @since Parte 2
@@ -318,24 +326,24 @@ public class Crupie {
 	}
 	
 	/**
-	 * Cria e adiciona uma Aposta assegurada por taxa a um Cenario específico.
+	 * Cria e adiciona uma Aposta assegurada por taxa a um Cenario especï¿½fico.
 	 * 
 	 * @param cenario
-	 *            O numero do Cenario em que a aposta será adicionada.
+	 *            O numero do Cenario em que a aposta serï¿½ adicionada.
 	 * @param apostador
-	 *            O nome do apostador responsável pela Aposta.
+	 *            O nome do apostador responsï¿½vel pela Aposta.
 	 * @param valor
 	 *            A quantia em centavos a ser apostada.
 	 * @param previsao
-	 *            A previsão sobre a fatalidade do Cenario.
+	 *            A previsï¿½o sobre a fatalidade do Cenario.
 	 * @param taxa
 	 * 			  Porcentagem do valor da aposta a ser retirada do Caixa caso a aposta seja perdedora.
 	 * @param custo
-	 *            O valor necessário a ser pago ao Caixa para cadastrar um seguro.
+	 *            O valor necessï¿½rio a ser pago ao Caixa para cadastrar um seguro.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return o identificador da aposta assegurada.
 	 * @since Parte 2
@@ -356,17 +364,17 @@ public class Crupie {
 	 * Transforma uma Aposta assegurada por taxa em uma Aposta assegurada por valor
 	 * 
 	 * @param cenario
-	 *            O numero do Cenario onde a Aposta está.
+	 *            O numero do Cenario onde a Aposta estï¿½.
 	 * @param valor
 	 *            O valor do seguro da aposta.
 	 * @param apostaAssegurada
 	 * 			  O identificador da Aposta assegurada.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
-	 * @return true se a Aposta for adicionada com sucesso, false caso o contrário.
+	 * @return true se a Aposta for adicionada com sucesso, false caso o contrï¿½rio.
 	 * @since Parte 2
 	 */
 	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
@@ -384,17 +392,17 @@ public class Crupie {
 	 * Transforma uma Aposta assegurada por valor em uma Aposta assegurada por taxa
 	 * 
 	 * @param cenario
-	 *            O numero do Cenario onde a Aposta está.
+	 *            O numero do Cenario onde a Aposta estï¿½.
 	 * @param taxa
 	 *            A taxa do seguro da aposta.
 	 * @param apostaAssegurada
 	 * 			  O identificador da Aposta assegurada.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
-	 * @return true se a Aposta for adicionada com sucesso, false caso o contrário.
+	 * @return true se a Aposta for adicionada com sucesso, false caso o contrï¿½rio.
 	 * @since Parte 2
 	 */
 	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
@@ -409,14 +417,14 @@ public class Crupie {
 	}
 
 	/**
-	 * Computa e retorna o valor total apostado sob um Cenario específico.
+	 * Computa e retorna o valor total apostado sob um Cenario especï¿½fico.
 	 * 
 	 * @param cenario
-	 *            número do Cenario desejado.
+	 *            nï¿½mero do Cenario desejado.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return a quantia total em centavos apostada sob este Cenario.
 	 * @since Parte 1
@@ -433,14 +441,14 @@ public class Crupie {
 	}
 
 	/**
-	 * Lista todas as Apostas cadastradas em um Cenario específico.
+	 * Lista todas as Apostas cadastradas em um Cenario especï¿½fico.
 	 * 
 	 * @param cenario
-	 *            número do Cenario desejado.
+	 *            nï¿½mero do Cenario desejado.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return a String que representa a listagem das Apostas.
 	 * @since Parte 1
@@ -457,14 +465,14 @@ public class Crupie {
 	}
 
 	/**
-	 * Conta a quantidade de apostas cadastradas no Cenario específico.
+	 * Conta a quantidade de apostas cadastradas no Cenario especï¿½fico.
 	 * 
 	 * @param cenario
-	 *            número do Cenario desejado.
+	 *            nï¿½mero do Cenario desejado.
 	 * @exception IllegalArgumentException
-	 *                se o número do Cenario for menor ou igual a zero.
+	 *                se o nï¿½mero do Cenario for menor ou igual a zero.
 	 * @exception IndexOutOfBoundsExcetion
-	 *                se o número do Cenario não corresponder a nenhum Cenario
+	 *                se o nï¿½mero do Cenario nï¿½o corresponder a nenhum Cenario
 	 *                adicionado.
 	 * @return a quantidade de apostas cadastradas neste Cenario.
 	 * @since Parte 1
