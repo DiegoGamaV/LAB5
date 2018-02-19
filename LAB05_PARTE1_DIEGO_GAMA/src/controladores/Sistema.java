@@ -11,7 +11,7 @@ public class Sistema {
 	public void inicializa(int caixa, double taxa) {
 		this.controlador = new Crupie(caixa, taxa);
 	}
-	
+
 	public int getCaixa() {
 		return this.controlador.getDinheiroAtual();
 	}
@@ -70,6 +70,14 @@ public class Sistema {
 	
 	public int getTotalRateioCenario(int cenario) {
 		return this.controlador.getDinheiroVencedores(cenario);
+	}
+	
+	public void alterarOrdem(String ordem) {
+		this.controlador.alterarOrdem(ordem);
+	}
+	
+	public String exibirCenarioOrdenado(int cenario) {
+		return this.controlador.exibirCenarioOrdenado(cenario);
 	}
 	
 }

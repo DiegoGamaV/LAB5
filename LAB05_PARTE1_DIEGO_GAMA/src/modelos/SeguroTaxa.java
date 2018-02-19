@@ -4,8 +4,8 @@ package modelos;
  * @author Diego Alves Gama
  * 
  *         A classe SeguroTaxa representa o seguro por taxa de uma Aposta
- *         assegurada. Cada Aposta assegurada, além de todos os atributos de
- *         uma Aposta, contém também o custo do seguro e o porcentagem do
+ *         assegurada. Cada Aposta assegurada, alÃ©m de todos os atributos de
+ *         uma Aposta, contÃ©m tambÃ©m o custo do seguro e o porcentagem do
  *         valor da aposta a ser assegurada caso a Aposta seja perdedora.
  *         
  * @since Parte 2
@@ -16,7 +16,7 @@ public class SeguroTaxa extends Seguro {
 	private int custo;
 	
 	/**
-	 * Constrói um SeguroValor com um valor assegurado, um custo e um id.
+	 * Constrï¿½i um SeguroValor com um valor assegurado, um custo e um id.
 	 * 
 	 * @param taxa
 	 * 			  Taxa do valor da aposta a ser retirada do caixa caso a Aposta seja perdedora.
@@ -54,7 +54,7 @@ public class SeguroTaxa extends Seguro {
 	}
 	
 	/**
-	 * Método de checagem que avalia se o valor e o são válidos
+	 * MÃ©todo de checagem que avalia se o valor e o sÃ£o vÃ¡lidos
 	 * 
 	 * @param taxa
 	 *            A taxa assegurada a ser validada.

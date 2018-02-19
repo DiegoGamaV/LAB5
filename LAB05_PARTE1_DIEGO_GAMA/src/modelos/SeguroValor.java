@@ -4,8 +4,8 @@ package modelos;
  * @author Diego Alves Gama
  * 
  *         A classe SeguroValor representa o seguro por valor de uma Aposta
- *         assegurada. Cada Aposta assegurada, além de todos os atributos de
- *         uma Aposta, contém também o custo do seguro e o valor a ser assegurado
+ *         assegurada. Cada Aposta assegurada, alÃ©m de todos os atributos de
+ *         uma Aposta, contÃ©m tambÃ©m o custo do seguro e o valor a ser assegurado
  *         caso a Aposta seja perdedora.
  *         
  * @since Parte 2
@@ -17,7 +17,7 @@ public class SeguroValor extends Seguro {
 	private int custo;
 	
 	/**
-	 * Constrói um SeguroValor com um valor assegurado, um custo e um id.
+	 * Constrï¿½i um SeguroValor com um valor assegurado, um custo e um id.
 	 * 
 	 * @param valorAssegurado
 	 * 			  Valor a ser retirado do caixa caso a Aposta seja perdedora.
@@ -55,7 +55,7 @@ public class SeguroValor extends Seguro {
 	}
 
 	/**
-	 * Método de checagem que avalia se o valor e o são válidos
+	 * Mï¿½todo de checagem que avalia se o valor e o sÃ£o vÃ¡lidos
 	 * 
 	 * @param valor
 	 *            O valor assegurado a ser validado.

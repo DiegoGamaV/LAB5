@@ -5,7 +5,7 @@ package modelos;
  * 
  *         A classe Seguro representa o tipo de seguro de uma Aposta assegurada.
  *         Toda Aposta assegurada possui um id positivo dentro de um Cenario
- *         específico, definido via ordem de cadastro.
+ *         especÃ­fico, definido via ordem de cadastro.
  * @since Parte 2
  */
 public class Seguro {
@@ -22,7 +22,7 @@ public class Seguro {
 	}
 
 	/**
-	 * Constrói um Seguro com um deteminado id.
+	 * Constrï¿½i um Seguro com um deteminado id.
 	 * 
 	 * @param id
 	 *            Identificador desta Aposta assegurada.
@@ -57,7 +57,7 @@ public class Seguro {
 	}
 
 	/**
-	 * Compara se os dois objetos são considerados equivalentes.
+	 * Compara se os dois objetos sÃ£o considerados equivalentes.
 	 * 
 	 * @param obj
 	 *            O objeto a ser comparado com este Seguro.

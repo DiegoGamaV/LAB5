@@ -4,9 +4,9 @@ package modelos;
  * @author Diego Alves Gama
  * 
  *         A classe Aposta representa uma Aposta realizada sob uma determinada
- *         situação. Uma Aposta contém o nome do apostador que a realizou, a
- *         quantia apostada em centavos, e a previsão sobre a fatalidade da
- *         situação.
+ *         situaÃ§Ã£o. Uma Aposta contÃ©m o nome do apostador que a realizou, a
+ *         quantia apostada em centavos, e a previsÃ£o sobre a fatalidade da
+ *         situaÃ§Ã£o.
  * @since Parte 1
  */
 public class Aposta {
@@ -17,14 +17,14 @@ public class Aposta {
 	private String previsao;
 
 	/**
-	 * Constrói uma Aposta com o nome do apostador, valor e previsão especificados.
-	 * Os únicos valores permitidos para uma previsão são "VAI ACONTECER" e "N VAI
+	 * Constrï¿½i uma Aposta com o nome do apostador, valor e previsÃ£o especificados.
+	 * Os Ãºnicos valores permitidos para uma previsÃ£o sÃ£o "VAI ACONTECER" e "N VAI
 	 * ACONTECER". A quantia apostada deve ser positiva. Valores nulos, vazios ou
-	 * negativos não são aceitos.
+	 * negativos nÃ£o sÃ£o aceitos.
 	 * 
 	 * 
 	 * @param apostador
-	 *            Nome do apostador responsável pela Aposta.
+	 *            Nome do apostador responsÃ¡vel pela Aposta.
 	 * @param valor
 	 *            Quantia em centavos a ser apostada.
 	 * @param previsao
@@ -60,9 +60,9 @@ public class Aposta {
 	}
 
 	/**
-	 * Método de checagem que avalia se os valores passados são válidos. Os únicos
-	 * valores válidos para previsao são 'VAI ACONTECER' e 'N VAI ACONTECER'. As
-	 * únicas quantias válidas para valor são as positivas.
+	 * MÃ©todo de checagem que avalia se os valores passados sÃ£o vÃ¡lido. Os Ãºnicos
+	 * valores vÃ¡lido para previsao sÃ£o 'VAI ACONTECER' e 'N VAI ACONTECER'. As
+	 * Ãºnicas quantias vÃ¡lidas para valor sÃ£o as positivas.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -86,9 +86,9 @@ public class Aposta {
 	}
 	
 	/**
-	 * Método de checagem que avalia se os valores passados são válidos. Os únicos
-	 * valores válidos para previsao são 'VAI ACONTECER' e 'N VAI ACONTECER'. As
-	 * únicas quantias válidas para valor são as positivas.
+	 * MÃ©todo de checagem que avalia se os valores passados sÃ£o vÃ¡lido. Os Ãºnicos
+	 * valores vÃ¡lido para previsao sÃ£o 'VAI ACONTECER' e 'N VAI ACONTECER'. As
+	 * Ãºnicas quantias vÃ¡lidas para valor sÃ£o as positivas.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -120,9 +120,9 @@ public class Aposta {
 	}
 	
 	/**
-	 * Método de checagem que avalia se os valores passados são válidos. Os únicos
-	 * valores válidos para previsao são 'VAI ACONTECER' e 'N VAI ACONTECER'. As
-	 * únicas quantias válidas para valor são as positivas.
+	 * MÃ©todo de checagem que avalia se os valores passados sÃ£o vÃ¡lido. Os Ãºnicos
+	 * valores vÃ¡lido para previsao sÃ£o 'VAI ACONTECER' e 'N VAI ACONTECER'. As
+	 * Ãºnicas quantias vÃ¡lidas para valor sÃ£o as positivas.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -153,7 +153,7 @@ public class Aposta {
 	}
 
 	/**
-	 * Método de checagem que avalia se os valores passados são vazios ou nulos para uma Aposta.
+	 * MÃ©todo de checagem que avalia se os valores passados sÃ£o vazios ou nulos para uma Aposta.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -162,15 +162,15 @@ public class Aposta {
 	 * @exception IllegalArgumentException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> Valor de previsao é composto apenas de espaços vazios.
-	 *                </i> <i> Valor de apostador é composto apenas de espaços
+	 *                <i> Valor de previsao ï¿½ composto apenas de espaï¿½os vazios.
+	 *                </i> <i> Valor de apostador ï¿½ composto apenas de espaï¿½os
 	 *                vazios. </i>
 	 *                </nl>
 	 * @exception NullPointerException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> O valor de previsao é null. </i> <i> O valor de apostador
-	 *                é null. </i>
+	 *                <i> O valor de previsao Ã© null. </i> <i> O valor de apostador
+	 *                Ã© null. </i>
 	 *                </nl>
 	 * @since Parte 1
 	 */
@@ -186,7 +186,7 @@ public class Aposta {
 	}
 	
 	/**
-	 * Método de checagem que avalia se os valores passados são vazios ou nulos para uma Aposta assegurada por valor.
+	 * MÃ©todo de checagem que avalia se os valores passados sÃ£o vazios ou nulos para uma Aposta assegurada por valor.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -195,15 +195,15 @@ public class Aposta {
 	 * @exception IllegalArgumentException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> Valor de previsao é composto apenas de espaços vazios.
-	 *                </i> <i> Valor de apostador é composto apenas de espaços
+	 *                <i> Valor de previsao Ã© composto apenas de espaï¿½os vazios.
+	 *                </i> <i> Valor de apostador Ã© composto apenas de espaï¿½os
 	 *                vazios. </i>
 	 *                </nl>
 	 * @exception NullPointerException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> O valor de previsao é null. </i> <i> O valor de apostador
-	 *                é null. </i>
+	 *                <i> O valor de previsao Ã© null. </i> <i> O valor de apostador
+	 *                Ã© null. </i>
 	 *                </nl>
 	 * @since Parte 2
 	 */
@@ -219,7 +219,7 @@ public class Aposta {
 	}
 	
 	/**
-	 * Método de checagem que avalia se os valores passados são vazios ou nulos para uma Aposta assegurada por taxa.
+	 * MÃ©todo de checagem que avalia se os valores passados sÃ£o vazios ou nulos para uma Aposta assegurada por taxa.
 	 * 
 	 * @param previsao
 	 *            Previsao da Aposta a ser validada.
@@ -228,15 +228,15 @@ public class Aposta {
 	 * @exception IllegalArgumentException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> Valor de previsao é composto apenas de espaços vazios.
-	 *                </i> <i> Valor de apostador é composto apenas de espaços
+	 *                <i> Valor de previsao ï¿½ composto apenas de espaï¿½os vazios.
+	 *                </i> <i> Valor de apostador ï¿½ composto apenas de espaï¿½os
 	 *                vazios. </i>
 	 *                </nl>
 	 * @exception NullPointerException
 	 *                se quaisquer destes casos acontecerem:
 	 *                <nl>
-	 *                <i> O valor de previsao é null. </i> <i> O valor de apostador
-	 *                é null. </i>
+	 *                <i> O valor de previsao Ã© null. </i> <i> O valor de apostador
+	 *                Ã© null. </i>
 	 *                </nl>
 	 * @since Parte 2
 	 */
@@ -290,9 +290,9 @@ public class Aposta {
 	public void setSeguro(Seguro seguro) {
 		this.seguro = seguro;
 	}
-	
+
 	/**
-	 * Retorna uma representação textual de uma Aposta de acordo com o tipo do seu Seguro.
+	 * Retorna uma representaÃ§Ã£o textual de uma Aposta de acordo com o tipo do seu Seguro.
 	 * 
 	 * @return a String que representa esta Aposta.
 	 * @since Parte 2
@@ -326,12 +326,12 @@ public class Aposta {
 	}
 
 	/**
-	 * Avalia se o objeto passado é equivalente a esta Aposta.
+	 * Avalia se o objeto passado Ã© equivalente a esta Aposta.
 	 * 
 	 * @return true se o objeto for considerado equivalente a esta Aposta, e false
-	 *         caso o contrário.
+	 *         caso o contrÃ¡rio.
 	 * @since Parte 1
-	 */
+	 */ 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

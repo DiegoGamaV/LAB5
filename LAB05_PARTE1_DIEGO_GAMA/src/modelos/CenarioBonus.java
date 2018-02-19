@@ -3,8 +3,8 @@ package modelos;
 /**
  * @author Diego Alves Gama
  * 
- *         A classe CenarioBonus � utilizada para abstrair um Cenario especial,
- *         onde o fator b�nus em centavos � adicionado ao rateio no final do c�lculo.
+ *         A classe CenarioBonus é utilizada para abstrair um Cenario especial,
+ *         onde o fator bônus em centavos é adicionado ao rateio no final do cálculo.
  * @since Parte 2
  */
 public class CenarioBonus extends Cenario {
@@ -12,14 +12,14 @@ public class CenarioBonus extends Cenario {
 	private int bonus;
 	
 	/**
-	 * Constr�i um CenarioBonus com uma descri��o espec�fica, um estado padr�o como 'Nao
-	 * finalizado' e um valor b�nus. Uma descri��o nula ou vazia n�o � aceita, e um b�nus
-	 * menor ou igual a 0 n�o � aceito.
+	 * Constrói um CenarioBonus com uma descrição específica, um estado padrão como 'Nao
+	 * finalizado' e um valor bônus. Uma descrição nula ou vazia não é aceita, e um bônus
+	 * menor ou igual a 0 não é aceito.
 	 * 
 	 * @param descricao
-	 *            A descri��o sobre o que o cen�rio se trata.
+	 *            A descrição sobre o que o cen�rio se trata.
 	 * @param bonus
-	 * 			  O valor b�nus a ser adicionado no rateio.
+	 * 			  O valor bônus a ser adicionado no rateio.
 	 * @since Parte 2
 	 */
 	public CenarioBonus(String descricao, int bonus) {
@@ -29,7 +29,7 @@ public class CenarioBonus extends Cenario {
 	}
 	
 	/**
-	 * M�todo de checagem que avalia se o b�nus � v�lido.
+	 * Método de checagem que avalia se o bônus é válido.
 	 * 
 	 * @param bonus
 	 *            O bonus do Cenario a ser avaliado.
@@ -43,9 +43,9 @@ public class CenarioBonus extends Cenario {
 	}
 	
 	/**
-	 * Consulta o b�nus cadastrado neste CenarioBonus.
+	 * Consulta o bônus cadastrado neste CenarioBonus.
 	 * 
-	 * @return o b�nus deste CenarioBonus.
+	 * @return o bônus deste CenarioBonus.
 	 * @since Parte 2
 	 */
 	public int getBonus() {
@@ -67,7 +67,7 @@ public class CenarioBonus extends Cenario {
 	}
 
 	/**
-	 * Compara se os dois objetos s�o considerados equivalentes.
+	 * Compara se os dois objetos são considerados equivalentes.
 	 * 
 	 * @param obj
 	 *            O objeto a ser comparado com este CenarioBonus.
@@ -89,7 +89,7 @@ public class CenarioBonus extends Cenario {
 	}
 	
 	/**
-	 * Retorna a representa��o textual de um CenarioBonus.
+	 * Retorna a representação textual de um CenarioBonus.
 	 * 
 	 * @return a String que representa este CenarioBonus.
 	 * @since Parte 2

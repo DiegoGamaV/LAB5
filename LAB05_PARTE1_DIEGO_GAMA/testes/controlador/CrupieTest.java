@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controladores.Crupie;
+import modelos.Cenario;
 
 /**
  * @author Diego Alves Gama
@@ -16,16 +17,23 @@ import controladores.Crupie;
 public class CrupieTest {
 
 	private Crupie controlador;
-	private String cenario1;
-	private String cenario2;
+	private Crupie controladorOrdem;
+	private String cenarioA;
+	private String cenarioB;
 
 	@Before
 	public void setUp() {
 		controlador = new Crupie(10000, 0.10);
-		cenario1 = "O calendï¿½rio da UFCG vai normalizar";
-		cenario2 = "A nova grade vai se provar melhor que a anterior";
-		controlador.addCenario(cenario1);
-		controlador.addCenario(cenario2);
+		cenarioA = "O calendï¿½rio da UFCG vai normalizar";
+		cenarioB = "A nova grade vai se provar melhor que a anterior";
+		controlador.addCenario(cenarioA);
+		controlador.addCenario(cenarioB);
+		controladorOrdem = new Crupie(10000, 0.10);
+		controladorOrdem.addCenario("Este Lab terá uma nota boa");
+		controladorOrdem.addAposta(1, "Diego Gama", 1000, "VAI ACONTECER");
+		controladorOrdem.addAposta(1, "Pessoa do Contra", 1000, "N VAI ACONTECER");
+		controladorOrdem.addCenario("A próxima prova de LP2 vai ser dada :D");
+		controladorOrdem.addAposta(2, "Diego Gama", 1000, "VAI ACONTECER");
 	}
 
 	// --- Testes de Construtor ---
@@ -141,7 +149,7 @@ public class CrupieTest {
 	@Test
 	public void listagemCenarioCorreta() {
 		String mensagem = "Esperando que ambas as listagens sejam iguais";
-		String lista = "1 - " + cenario1 + " - Nao finalizado" + System.lineSeparator() + "2 - " + cenario2
+		String lista = "1 - " + cenarioA + " - Nao finalizado" + System.lineSeparator() + "2 - " + cenarioB
 				+ " - Nao finalizado" + System.lineSeparator();
 		assertEquals(mensagem, lista, controlador.listarCenarios());
 	}
@@ -151,7 +159,7 @@ public class CrupieTest {
 	@Test
 	public void cenarioExibido() {
 		String mensagem = "Esperando conseguir exibir corretamente o cenï¿½rio";
-		String descricao = "1 - " + cenario1 + " - Nao finalizado";
+		String descricao = "1 - " + cenarioA + " - Nao finalizado";
 		assertEquals(mensagem, descricao, controlador.exibirCenario(1));
 	}
 
@@ -170,8 +178,34 @@ public class CrupieTest {
 		controlador.exibirCenario(99);
 	}
 
+	// --- Ordenação de Cenario ---
+	
+	@Test
+	public void cenarioPorNumApostas() {
+		String mensagem = "Esperando que o toString seja do cenario com mais apostas";
+		controladorOrdem.alterarOrdem("apostas");
+		String descricao = "1 - Este Lab terá uma nota boa - Nao finalizado";
+		assertEquals(mensagem, descricao, controladorOrdem.exibirCenario(1));	
+	}
+	
+	@Test
+	public void cenarioPorNome() {
+		String mensagem = "Esperando que o toString seja do primeiro cenario em ordem alfabética";
+		controladorOrdem.alterarOrdem("nome");
+		String descricao = "2 - A próxima prova de LP2 vai ser dada :D - Nao finalizado";
+		assertEquals(mensagem, descricao, controladorOrdem.exibirCenario(1));	
+	}
+	
+	@Test
+	public void cenarioPorCadastro() {
+		String mensagem = "Esperando que o toString seja do primeiro cenario cadastrado";
+		controladorOrdem.alterarOrdem("cadastro");
+		String descricao = "1 - Este Lab terá uma nota boa - Nao finalizado";
+		assertEquals(mensagem, descricao, controladorOrdem.exibirCenario(1));	
+	}
+	
 	// --- Testes do Caixa ---
-
+	
 	@Test
 	public void caixaIgual() {
 		Crupie controlador1 = new Crupie(1000, 0.10);
